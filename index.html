@@ -2198,16 +2198,16 @@ gsap.set('.hero-cta-row', { opacity: 0, y: 30 });
 gsap.set('.hero-countdown', { opacity: 0, y: 30 });
 gsap.set('.scroll-hint', { opacity: 0 });
 
-const heroTl = gsap.timeline({ delay: .2 });
+const heroTl = gsap.timeline({ delay: .05 });
 heroTl
-  .to('.hero-pill', { opacity: 1, y: 0, duration: .7, ease: 'power3.out' })
-  .to('.hero-kicker', { opacity: 1, y: 0, duration: .7, ease: 'power3.out' }, '-=.4')
-  .to('.hero-mega', { opacity: 1, y: 0, scale: 1, duration: 1.1, ease: 'back.out(1.4)' }, '-=.3')
-  .to('.hero-punch', { opacity: 1, y: 0, duration: .7, ease: 'power3.out' }, '-=.5')
-  .to('.hero-sub', { opacity: 1, y: 0, duration: .7, ease: 'power3.out' }, '-=.4')
-  .to('.hero-cta-row', { opacity: 1, y: 0, duration: .7, ease: 'power3.out' }, '-=.4')
-  .to('.hero-countdown', { opacity: 1, y: 0, duration: .7, ease: 'power3.out' }, '-=.4')
-  .to('.scroll-hint', { opacity: 1, duration: .5 }, '-=.2');
+  .to('.hero-mega', { opacity: 1, y: 0, scale: 1, duration: 1, ease: 'back.out(1.4)' }, 0)
+  .to('.hero-pill', { opacity: 1, y: 0, duration: .6, ease: 'power3.out' }, 0)
+  .to('.hero-kicker', { opacity: 1, y: 0, duration: .6, ease: 'power3.out' }, .15)
+  .to('.hero-punch', { opacity: 1, y: 0, duration: .6, ease: 'power3.out' }, .35)
+  .to('.hero-sub', { opacity: 1, y: 0, duration: .6, ease: 'power3.out' }, .5)
+  .to('.hero-cta-row', { opacity: 1, y: 0, duration: .6, ease: 'power3.out' }, .65)
+  .to('.hero-countdown', { opacity: 1, y: 0, duration: .6, ease: 'power3.out' }, .8)
+  .to('.scroll-hint', { opacity: 1, duration: .5 }, .95);
 
 /* Hero mega floating */
 gsap.to('.hero-mega em', {
