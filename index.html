@@ -2453,16 +2453,8 @@ heroTl
 /* Hero mega : pas d'animation continue ni de parallax scroll pour garder
    le 50 000€ stable après l'entry animation. */
 
-/* Bg mesh parallax */
-gsap.to('.bg-mesh', {
-  scrollTrigger: {
-    trigger: 'body',
-    start: 'top top',
-    end: 'bottom bottom',
-    scrub: 1
-  },
-  y: 200
-});
+/* Bg mesh : pas de parallax scroll — évite le joint visible en haut
+   quand le mesh fixé se translate et dévoile le fond blanc. */
 
 /* ===== MONEY RAIN ===== */
 const rainContainer = document.getElementById('rain');
