@@ -224,13 +224,14 @@ nav .cta-mini:hover { transform: translateY(-2px) scale(1.05); }
 
 .hero-mega {
   font-family: 'Instrument Serif', serif;
-  font-size: clamp(140px, 26vw, 380px);
-  line-height: .82;
-  letter-spacing: -.06em;
+  font-size: clamp(72px, 14vw, 220px);
+  line-height: .85;
+  letter-spacing: -.05em;
   position: relative;
   z-index: 3;
   margin-bottom: 10px;
   font-weight: 400;
+  white-space: nowrap;
 }
 .hero-mega em {
   font-style: italic;
@@ -1295,11 +1296,12 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
 .prize-anchor-tag .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--pink); box-shadow: 0 0 10px var(--pink); animation: pulse 1.5s infinite; }
 .prize-anchor-num {
   font-family: 'Instrument Serif', serif;
-  font-size: clamp(80px, 13vw, 150px);
-  line-height: .85;
-  letter-spacing: -.05em;
+  font-size: clamp(50px, 8.5vw, 110px);
+  line-height: .9;
+  letter-spacing: -.04em;
   font-weight: 400;
   position: relative; z-index: 2;
+  white-space: nowrap;
 }
 .prize-anchor-num em {
   font-style: italic;
@@ -1726,7 +1728,7 @@ footer {
 @media (max-width: 600px) {
   section { padding: 70px 16px; }
   .hero { padding: 90px 16px 30px; }
-  .hero-mega { font-size: clamp(90px, 22vw, 160px); }
+  .hero-mega { font-size: clamp(52px, 13vw, 90px); }
   .hero-sub { font-size: 14px; margin-bottom: 30px; }
   .hero-cta-row { flex-direction: column; width: 100%; gap: 12px; }
   .hero-cta-row .btn-huge,
@@ -1810,7 +1812,7 @@ footer {
   .qty-preset { padding: 8px 14px; font-size: 12px; }
   .qty-preset.popular::after { font-size: 7px; padding: 2px 8px; top: -7px; }
   .prize-anchor { padding: 26px 20px 22px; margin-bottom: 36px; border-radius: 24px; }
-  .prize-anchor-num { font-size: 90px; }
+  .prize-anchor-num { font-size: 56px; }
   .prize-anchor-sub { font-size: 11px; gap: 6px; }
   .final-cta { padding: 80px 16px; }
   .faq-q-txt { font-size: 18px; }
@@ -1843,7 +1845,7 @@ footer {
 
   <div class="hero-punch-top">Tente ta chance pour gagner</div>
 
-  <h1 class="hero-mega"><em>50<span class="euro">K€</span></em></h1>
+  <h1 class="hero-mega"><em>50 000<span class="euro">€</span></em></h1>
 
   <div class="hero-punch">de contrats <em>de marque</em>.</div>
 
@@ -2132,7 +2134,7 @@ footer {
       <div class="prize-anchor">
         <div class="prize-anchor-glow"></div>
         <div class="prize-anchor-tag"><span class="dot"></span>Ce que tu vises</div>
-        <div class="prize-anchor-num"><em>50</em><span class="k">K€</span></div>
+        <div class="prize-anchor-num"><em>50 000</em><span class="k">€</span></div>
         <div class="prize-anchor-sub">de <strong>contrats de marque</strong> · <span>+ 1 an Chamas</span> · <span>+ 1 000€ cash</span></div>
       </div>
       <div class="section-tag" style="display: inline-flex; margin: 0 auto 20px;"><span class="dot"></span>Passer à l'action</div>
@@ -2248,7 +2250,7 @@ footer {
           </div>
           <div class="story-content">
             <div class="story-tag">✨ Scalevision Édition #01</div>
-            <div class="story-headline">50K€ à gagner.<br>Mon lien ↓</div>
+            <div class="story-headline">50 000€ à gagner.<br>Mon lien ↓</div>
             <div class="story-sub">Chaque pote qui prend son ticket avec mon lien = 1 ticket offert pour moi 🚀</div>
             <div class="story-cta">Prendre mes placements →</div>
           </div>
