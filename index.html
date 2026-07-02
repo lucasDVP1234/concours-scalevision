@@ -1670,10 +1670,9 @@ footer {
   position: fixed; bottom: 20px; left: 20px; right: 20px;
   padding: 14px 22px;
   border-radius: 100px;
-  background: rgba(8,7,15,.92);
-  backdrop-filter: blur(30px);
-  border: 1px solid rgba(255,46,147,.5);
-  box-shadow: 0 20px 60px rgba(8,7,15,.25);
+  background: var(--grad);
+  border: 1px solid rgba(255,255,255,.25);
+  box-shadow: 0 20px 60px -10px rgba(255,46,147,.55);
   z-index: 90;
   display: flex; align-items: center; justify-content: space-between; gap: 20px;
   transform: translateY(140%);
@@ -1683,15 +1682,15 @@ footer {
 .sticky-bar.visible { transform: translateY(0); }
 .sticky-info {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 12px; color: rgba(255,255,255,.85);
+  font-size: 12px; color: rgba(255,255,255,.9);
   letter-spacing: .5px;
 }
-.sticky-info strong { color: var(--pink); }
+.sticky-info strong { color: #ffe066; }
 .sticky-cta {
   padding: 10px 22px;
-  background: var(--grad);
+  background: white;
   border-radius: 100px;
-  color: white; font-size: 13px; font-weight: 700;
+  color: var(--ink); font-size: 13px; font-weight: 700;
   text-decoration: none;
   white-space: nowrap;
   transition: transform .3s;
