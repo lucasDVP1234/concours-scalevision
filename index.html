@@ -23,14 +23,14 @@
   --pink-glow: #ff008c;
   --ink: #08070f;
   --ink-2: #12111d;
-  --paper: #f6f4ef;
-  --paper-2: #ecead9;
+  --paper: #ffffff;
+  --paper-2: #f6f4ef;
   --chamas-red: #e30613;
   --chamas-yellow: #ffd200;
   --grad: linear-gradient(115deg, #251eaf 0%, #6a2fdb 45%, #ff2e93 100%);
-  --grad-money: linear-gradient(115deg, #ffd200 0%, #ff6bb0 50%, #ff2e93 100%);
-  --shadow-pink: 0 30px 80px -20px rgba(255,46,147,.5);
-  --shadow-blue: 0 30px 80px -20px rgba(37,30,175,.5);
+  --grad-money: linear-gradient(115deg, #ff9500 0%, #ff2e93 50%, #6a2fdb 100%);
+  --shadow-pink: 0 30px 80px -20px rgba(255,46,147,.35);
+  --shadow-blue: 0 30px 80px -20px rgba(37,30,175,.35);
 }
 
 * { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing:antialiased; }
@@ -42,8 +42,8 @@ html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-stopped { overflow: hidden; }
 
 html, body {
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--paper);
+  color: var(--ink);
   font-family: 'Inter', system-ui, sans-serif;
   overflow-x: hidden;
   min-height: 100vh;
@@ -56,9 +56,9 @@ body { position: relative; }
 .bg-mesh {
   position: fixed; inset: 0;
   background:
-    radial-gradient(60vw 60vh at 15% 10%, rgba(37,30,175,.5), transparent 60%),
-    radial-gradient(50vw 50vh at 90% 30%, rgba(255,46,147,.35), transparent 60%),
-    radial-gradient(70vw 70vh at 50% 100%, rgba(37,30,175,.25), transparent 60%);
+    radial-gradient(60vw 60vh at 15% 10%, rgba(37,30,175,.14), transparent 60%),
+    radial-gradient(50vw 50vh at 90% 30%, rgba(255,46,147,.12), transparent 60%),
+    radial-gradient(70vw 70vh at 50% 100%, rgba(37,30,175,.08), transparent 60%);
   pointer-events: none;
   z-index: 0;
   will-change: transform;
@@ -67,10 +67,10 @@ body { position: relative; }
 .noise {
   position: fixed; inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
-  opacity: .07;
+  opacity: .05;
   pointer-events: none;
   z-index: 1000;
-  mix-blend-mode: overlay;
+  mix-blend-mode: multiply;
 }
 
 /* ---------- CURSOR ---------- */
@@ -86,7 +86,6 @@ body { position: relative; }
   width: 6px; height: 6px;
   background: var(--pink);
   border-radius: 50%;
-  mix-blend-mode: difference;
 }
 .cursor-ring {
   width: 32px; height: 32px;
@@ -135,11 +134,11 @@ nav {
   z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
   backdrop-filter: blur(20px);
-  background: rgba(8,7,15,.4);
-  border-bottom: 1px solid rgba(255,255,255,.06);
+  background: rgba(255,255,255,.7);
+  border-bottom: 1px solid rgba(8,7,15,.06);
   transition: padding .3s;
 }
-nav.compact { padding: 12px 30px; background: rgba(8,7,15,.85); }
+nav.compact { padding: 12px 30px; background: rgba(255,255,255,.9); }
 .logo {
   font-family: 'Instrument Serif', serif;
   font-size: 28px;
@@ -156,7 +155,7 @@ nav.compact { padding: 12px 30px; background: rgba(8,7,15,.85); }
 .nav-mid {
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
-  color: rgba(255,255,255,.6);
+  color: rgba(8,7,15,.6);
   letter-spacing: 2px;
   text-transform: uppercase;
   display: flex; align-items: center; gap: 10px;
@@ -189,24 +188,38 @@ nav .cta-mini:hover { transform: translateY(-2px) scale(1.05); }
 .hero-pill {
   display: inline-flex; align-items: center; gap: 10px;
   padding: 8px 18px 8px 10px;
-  border: 1px solid rgba(255,255,255,.15);
+  border: 1px solid rgba(8,7,15,.12);
   border-radius: 100px;
-  background: rgba(255,255,255,.04);
+  background: rgba(8,7,15,.03);
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
   backdrop-filter: blur(20px);
   margin-bottom: 30px;
-  color: rgba(255,255,255,.8);
+  color: rgba(8,7,15,.75);
 }
 .hero-pill-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--pink); box-shadow: 0 0 14px var(--pink); animation: pulse 1.5s infinite; }
 
 .hero-kicker {
   font-family: 'Instrument Serif', serif;
+  font-size: clamp(26px, 3vw, 44px);
+  color: var(--ink);
+  margin-bottom: 24px;
+  letter-spacing: -.02em;
+  line-height: 1.05;
+}
+.hero-kicker em {
   font-style: italic;
-  font-size: clamp(22px, 2.4vw, 34px);
-  color: rgba(255,255,255,.75);
-  margin-bottom: 15px;
-  letter-spacing: -.01em;
+  background: var(--grad);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent;
+}
+.hero-punch-top {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(12px, 1.2vw, 14px);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(8,7,15,.55);
+  margin-bottom: 18px;
 }
 
 .hero-mega {
@@ -253,13 +266,13 @@ nav .cta-mini:hover { transform: translateY(-2px) scale(1.05); }
 .hero-sub {
   font-size: clamp(15px, 1.4vw, 19px);
   max-width: 620px;
-  color: rgba(255,255,255,.75);
+  color: rgba(8,7,15,.65);
   line-height: 1.55;
   margin-bottom: 40px;
   position: relative; z-index: 3;
 }
-.hero-sub strong { color: white; font-weight: 700; }
-.hero-sub .hl { background: linear-gradient(transparent 60%, rgba(255,46,147,.4) 60%); padding: 0 3px; }
+.hero-sub strong { color: var(--ink); font-weight: 700; }
+.hero-sub .hl { background: linear-gradient(transparent 60%, rgba(255,46,147,.35) 60%); padding: 0 3px; }
 
 .hero-cta-row {
   display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
@@ -301,16 +314,16 @@ nav .cta-mini:hover { transform: translateY(-2px) scale(1.05); }
 
 .btn-ghost {
   padding: 22px 30px;
-  background: rgba(255,255,255,.05);
-  border: 1px solid rgba(255,255,255,.15);
-  color: white; border-radius: 100px;
+  background: rgba(8,7,15,.04);
+  border: 1px solid rgba(8,7,15,.12);
+  color: var(--ink); border-radius: 100px;
   font-size: 16px; font-weight: 500;
   cursor: pointer; text-decoration: none;
   display: inline-flex; align-items: center; gap: 10px;
   backdrop-filter: blur(20px);
   transition: all .3s;
 }
-.btn-ghost:hover { background: rgba(255,255,255,.1); }
+.btn-ghost:hover { background: rgba(8,7,15,.08); }
 
 .hero-countdown {
   margin-top: 60px;
@@ -320,15 +333,15 @@ nav .cta-mini:hover { transform: translateY(-2px) scale(1.05); }
 .cd-label {
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
-  color: rgba(255,255,255,.5);
+  color: rgba(8,7,15,.5);
   width: 100%; text-align: center;
   margin-bottom: 12px;
 }
 .cd-item {
   min-width: 78px;
   padding: 14px 12px;
-  background: rgba(255,255,255,.04);
-  border: 1px solid rgba(255,255,255,.1);
+  background: rgba(8,7,15,.03);
+  border: 1px solid rgba(8,7,15,.1);
   backdrop-filter: blur(20px);
   border-radius: 12px;
   text-align: center;
@@ -337,11 +350,12 @@ nav .cta-mini:hover { transform: translateY(-2px) scale(1.05); }
   font-family: 'Instrument Serif', serif;
   font-size: 38px; line-height: 1;
   font-weight: 400;
+  color: var(--ink);
 }
 .cd-lbl {
   font-family: 'JetBrains Mono', monospace;
   font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase;
-  color: rgba(255,255,255,.5);
+  color: rgba(8,7,15,.5);
   margin-top: 4px;
 }
 
@@ -349,7 +363,7 @@ nav .cta-mini:hover { transform: translateY(-2px) scale(1.05); }
   position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
   font-family: 'JetBrains Mono', monospace;
   font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
-  color: rgba(255,255,255,.5);
+  color: rgba(8,7,15,.5);
   z-index: 3;
   animation: hintBounce 2s infinite;
 }
@@ -371,7 +385,7 @@ nav .cta-mini:hover { transform: translateY(-2px) scale(1.05); }
   transform: rotate(-1.5deg);
   margin: 20px 0;
 }
-.marquee.reverse { background: var(--paper); color: var(--ink); transform: rotate(1.5deg); }
+.marquee.reverse { background: var(--ink); color: var(--paper); transform: rotate(1.5deg); }
 .marquee-track {
   display: flex; gap: 40px;
   animation: scroll 30s linear infinite;
@@ -398,11 +412,12 @@ section { padding: 130px 30px; position: relative; z-index: 2; }
 .section-tag {
   display: inline-flex; align-items: center; gap: 10px;
   padding: 6px 14px;
-  border: 1px solid rgba(255,255,255,.15);
+  border: 1px solid rgba(8,7,15,.12);
   border-radius: 100px;
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
-  color: rgba(255,255,255,.7);
+  color: rgba(8,7,15,.65);
+  background: rgba(8,7,15,.02);
   margin-bottom: 24px;
 }
 .section-tag .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--pink); }
@@ -436,7 +451,7 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
 
 .subtitle {
   font-size: clamp(16px, 1.4vw, 20px);
-  color: rgba(255,255,255,.7);
+  color: rgba(8,7,15,.62);
   max-width: 680px;
   line-height: 1.5;
   margin-bottom: 60px;
@@ -445,8 +460,8 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
 /* ---------- DEAL SECTION - "1 ticket = 3 trucs" ---------- */
 .deal-section { padding: 100px 30px; }
 .deal-wrap {
-  background: rgba(255,255,255,.03);
-  border: 1px solid rgba(255,255,255,.1);
+  background: rgba(8,7,15,.02);
+  border: 1px solid rgba(8,7,15,.08);
   border-radius: 40px;
   padding: 60px;
   backdrop-filter: blur(20px);
@@ -457,7 +472,7 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
   content: '';
   position: absolute; top: -50%; right: -20%;
   width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(255,46,147,.2), transparent 60%);
+  background: radial-gradient(circle, rgba(255,46,147,.14), transparent 60%);
   filter: blur(80px);
 }
 .deal-head { text-align: center; margin-bottom: 60px; position: relative; }
@@ -470,7 +485,7 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
 }
 .deal-eq .op { color: var(--pink); font-style: italic; }
 .deal-eq .val { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; font-style: italic; }
-.deal-eq .val-num { font-family: 'JetBrains Mono', monospace; font-size: .7em; font-weight: 700; background: none; color: var(--paper); }
+.deal-eq .val-num { font-family: 'JetBrains Mono', monospace; font-size: .7em; font-weight: 700; background: none; color: var(--ink); }
 
 .deal-3col {
   display: grid; grid-template-columns: repeat(3, 1fr);
@@ -478,14 +493,15 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
 }
 .deal-card {
   padding: 40px 32px;
-  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-  border: 1px solid rgba(255,255,255,.1);
+  background: linear-gradient(180deg, #ffffff, #fafaf6);
+  border: 1px solid rgba(8,7,15,.08);
   border-radius: 24px;
   position: relative;
   overflow: hidden;
   transition: transform .5s cubic-bezier(.2,.9,.3,1);
+  box-shadow: 0 20px 50px -30px rgba(8,7,15,.15);
 }
-.deal-card:hover { transform: translateY(-6px) scale(1.02); border-color: var(--pink); }
+.deal-card:hover { transform: translateY(-6px) scale(1.02); border-color: var(--pink); box-shadow: 0 30px 60px -25px rgba(255,46,147,.25); }
 .deal-emo {
   font-size: 76px;
   display: inline-block;
@@ -511,7 +527,7 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
   margin-bottom: 14px;
   letter-spacing: -.02em;
 }
-.deal-desc { color: rgba(255,255,255,.65); font-size: 14px; line-height: 1.55; }
+.deal-desc { color: rgba(8,7,15,.65); font-size: 14px; line-height: 1.55; }
 
 /* ---------- PRIZES BENTO ---------- */
 .prizes-bento {
@@ -522,7 +538,7 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
   min-height: 720px;
 }
 .prize-card {
-  padding: 44px;
+  padding: 100px 44px 44px;
   border-radius: 32px;
   position: relative;
   overflow: hidden;
@@ -534,26 +550,76 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
 .prize-1 {
   grid-row: 1 / 3;
   background:
-    radial-gradient(circle at 20% 100%, rgba(255,46,147,.5), transparent 50%),
-    radial-gradient(circle at 100% 0%, rgba(37,30,175,.6), transparent 50%),
-    #0a091a;
-  border: 1px solid rgba(255,46,147,.3);
+    radial-gradient(circle at 20% 100%, rgba(255,46,147,.18), transparent 55%),
+    radial-gradient(circle at 100% 0%, rgba(37,30,175,.16), transparent 55%),
+    #ffffff;
+  border: 1px solid rgba(255,46,147,.25);
   box-shadow: var(--shadow-pink);
   min-height: 720px;
+  color: var(--ink);
 }
 .prize-1-badge {
   position: absolute; top: 30px; right: 30px;
   padding: 6px 14px;
   border-radius: 100px;
-  background: white; color: var(--ink);
+  background: var(--ink); color: white;
   font-family: 'JetBrains Mono', monospace;
   font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
   z-index: 3;
 }
+
+/* ---------- LOT TAG (big visible label) ---------- */
+.lot-tag {
+  position: absolute;
+  top: 28px; left: 28px;
+  z-index: 5;
+  display: flex; align-items: baseline; gap: 8px;
+  padding: 10px 18px 12px;
+  border-radius: 100px;
+  background: rgba(255,255,255,.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(8,7,15,.12);
+  box-shadow: 0 10px 30px rgba(8,7,15,.15);
+}
+.lot-tag-lbl {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(8,7,15,.6);
+  font-weight: 700;
+}
+.lot-tag-num {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 36px;
+  line-height: 1;
+  font-weight: 400;
+  letter-spacing: -.02em;
+}
+.lot-tag-1 .lot-tag-num {
+  background: var(--grad-money);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent;
+}
+.lot-tag-2 {
+  background: rgba(0,0,0,.45);
+  border-color: rgba(255,210,0,.6);
+}
+.lot-tag-2 .lot-tag-lbl { color: rgba(255,255,255,.85); }
+.lot-tag-2 .lot-tag-num { color: var(--chamas-yellow); }
+.lot-tag-3 {
+  border-color: rgba(255,46,147,.4);
+}
+.lot-tag-3 .lot-tag-num {
+  background: linear-gradient(180deg, #ff9500, #ff2e93);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent;
+}
 .prize-1-rank {
   font-family: 'JetBrains Mono', monospace;
   font-size: 12px; letter-spacing: 3px;
-  color: rgba(255,255,255,.7);
+  color: rgba(8,7,15,.55);
   margin-bottom: 30px;
 }
 .prize-1-amount {
@@ -562,11 +628,11 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
   line-height: .85;
   letter-spacing: -.06em;
   margin-bottom: 24px;
-  background: linear-gradient(180deg, #fff 0%, #ffd6ea 100%);
+  background: var(--grad-money);
   -webkit-background-clip: text; background-clip: text;
   color: transparent;
   font-weight: 400;
-  filter: drop-shadow(0 20px 40px rgba(255,46,147,.4));
+  filter: drop-shadow(0 20px 40px rgba(255,46,147,.35));
 }
 .prize-1-amount em { font-style: italic; }
 .prize-1-desc {
@@ -576,20 +642,22 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
   max-width: 520px;
   margin-bottom: 30px;
   letter-spacing: -.01em;
+  color: var(--ink);
 }
 .prize-1-detail {
   margin-top: auto;
   padding-top: 30px;
-  border-top: 1px solid rgba(255,255,255,.15);
+  border-top: 1px solid rgba(8,7,15,.1);
   font-size: 14px;
-  color: rgba(255,255,255,.7);
+  color: rgba(8,7,15,.6);
   line-height: 1.55;
   max-width: 540px;
 }
+.prize-1-detail strong { color: var(--ink); }
 .money-icon {
   position: absolute;
   font-size: 120px;
-  opacity: .12;
+  opacity: .08;
   filter: blur(1px);
   pointer-events: none;
 }
@@ -600,7 +668,7 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
 /* Chamas prize card */
 .prize-chamas {
   background: linear-gradient(140deg, #e30613 0%, #ff4b1f 100%);
-  border: 1px solid rgba(255,255,255,.2);
+  border: 1px solid rgba(0,0,0,.15);
   color: white;
   position: relative;
   overflow: hidden;
@@ -646,17 +714,18 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
 /* Cash prize card */
 .prize-cash {
   background:
-    radial-gradient(circle at 100% 0%, rgba(255,210,0,.3), transparent 60%),
-    linear-gradient(140deg, #1a1930, #0a091a);
-  border: 1px solid rgba(255,210,0,.3);
+    radial-gradient(circle at 100% 0%, rgba(255,210,0,.4), transparent 60%),
+    linear-gradient(140deg, #fff8dc, #fef2b8);
+  border: 1px solid rgba(255,149,0,.35);
   position: relative;
   overflow: hidden;
+  color: var(--ink);
 }
 .cash-emo {
   position: absolute; top: -20px; right: -10px;
   font-size: 180px;
   transform: rotate(20deg);
-  filter: drop-shadow(0 20px 40px rgba(255,210,0,.4));
+  filter: drop-shadow(0 20px 40px rgba(255,149,0,.35));
   animation: cashFloat 5s ease-in-out infinite;
 }
 @keyframes cashFloat {
@@ -664,13 +733,13 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
   50% { transform: rotate(10deg) translateY(-20px); }
 }
 .prize-cash .content { position: relative; z-index: 2; max-width: 60%; }
-.prize-cash .rank { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; color: rgba(255,255,255,.7); margin-bottom: 20px; }
+.prize-cash .rank { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; color: rgba(8,7,15,.6); margin-bottom: 20px; }
 .prize-cash .big {
   font-family: 'Instrument Serif', serif;
   font-size: clamp(60px, 8vw, 120px);
   line-height: .85;
   letter-spacing: -.04em;
-  background: linear-gradient(180deg, #ffd200, #ff6bb0);
+  background: linear-gradient(180deg, #ff9500, #ff2e93);
   -webkit-background-clip: text; background-clip: text;
   color: transparent;
   margin-bottom: 16px;
@@ -680,18 +749,18 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
   font-family: 'Instrument Serif', serif;
   font-size: clamp(20px, 2vw, 30px);
   line-height: 1.1;
-  color: white;
+  color: var(--ink);
   margin-bottom: 20px;
 }
-.prize-cash .details { color: rgba(255,255,255,.65); font-size: 13px; line-height: 1.5; max-width: 90%; }
+.prize-cash .details { color: rgba(8,7,15,.6); font-size: 13px; line-height: 1.5; max-width: 90%; }
 
 /* ---------- LIVE ACTIVITY ---------- */
 .live-section {
   padding: 60px 30px;
 }
 .live-wrap {
-  background: linear-gradient(115deg, rgba(37,30,175,.25), rgba(255,46,147,.2));
-  border: 1px solid rgba(255,255,255,.12);
+  background: linear-gradient(115deg, rgba(37,30,175,.08), rgba(255,46,147,.08));
+  border: 1px solid rgba(8,7,15,.1);
   border-radius: 32px;
   padding: 50px;
   backdrop-filter: blur(30px);
@@ -701,6 +770,7 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
   align-items: center;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 30px 80px -30px rgba(37,30,175,.2);
 }
 .live-left { display: flex; align-items: center; gap: 24px; }
 .live-badge {
@@ -719,10 +789,11 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
   left: 0; right: 0;
   display: flex; align-items: center; gap: 14px;
   padding: 12px 18px;
-  background: rgba(0,0,0,.5);
-  border: 1px solid rgba(255,255,255,.15);
+  background: rgba(255,255,255,.9);
+  border: 1px solid rgba(8,7,15,.08);
   border-radius: 100px;
   backdrop-filter: blur(20px);
+  box-shadow: 0 8px 24px -10px rgba(8,7,15,.15);
   font-size: 14px;
   will-change: transform, opacity;
 }
@@ -730,10 +801,11 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
   width: 32px; height: 32px; border-radius: 50%;
   background: var(--grad);
   display: flex; align-items: center; justify-content: center;
+  color: white;
   font-weight: 700; font-size: 13px;
   flex-shrink: 0;
 }
-.live-txt { color: white; }
+.live-txt { color: var(--ink); }
 .live-txt strong { color: var(--pink); font-weight: 600; }
 .live-count {
   font-family: 'Instrument Serif', serif;
@@ -747,7 +819,7 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
 .live-count-lbl {
   font-family: 'JetBrains Mono', monospace;
   font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
-  color: rgba(255,255,255,.6);
+  color: rgba(8,7,15,.55);
   margin-top: 6px;
   text-align: right;
 }
@@ -762,14 +834,15 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
 }
 .step-card {
   padding: 44px 36px 36px;
-  background: rgba(255,255,255,.03);
-  border: 1px solid rgba(255,255,255,.08);
+  background: #ffffff;
+  border: 1px solid rgba(8,7,15,.08);
   border-radius: 28px;
   position: relative;
   overflow: hidden;
   transition: transform .5s cubic-bezier(.2,.9,.3,1);
+  box-shadow: 0 20px 50px -30px rgba(8,7,15,.15);
 }
-.step-card:hover { transform: translateY(-8px); border-color: var(--pink); }
+.step-card:hover { transform: translateY(-8px); border-color: var(--pink); box-shadow: 0 30px 60px -25px rgba(255,46,147,.25); }
 .step-big-num {
   font-family: 'Instrument Serif', serif;
   font-size: 140px;
@@ -781,7 +854,7 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
   color: transparent;
   position: absolute;
   top: 20px; right: 30px;
-  opacity: .15;
+  opacity: .18;
   font-weight: 400;
 }
 .step-emo {
@@ -801,13 +874,14 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
   line-height: 1.1;
   margin-bottom: 18px;
   letter-spacing: -.02em;
+  color: var(--ink);
 }
 .step-desc {
-  color: rgba(255,255,255,.7);
+  color: rgba(8,7,15,.65);
   line-height: 1.55;
   font-size: 15px;
 }
-.step-desc strong { color: white; }
+.step-desc strong { color: var(--ink); }
 
 /* ---------- CHAMAS FULL BLEED ---------- */
 .chamas-section {
@@ -1064,22 +1138,22 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
   gap: 1px;
   border-radius: 24px;
   overflow: hidden;
-  background: rgba(255,255,255,.08);
-  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(8,7,15,.1);
+  border: 1px solid rgba(8,7,15,.08);
 }
 .brand-cell {
   aspect-ratio: 1.6/1;
-  background: rgba(8,7,15,.9);
+  background: #ffffff;
   display: flex; align-items: center; justify-content: center;
   padding: 20px;
-  color: rgba(255,255,255,.55);
+  color: rgba(8,7,15,.55);
   font-family: 'Instrument Serif', serif;
   font-size: 22px;
   letter-spacing: 1px;
   transition: all .4s;
   text-align: center;
 }
-.brand-cell:hover { color: white; background: linear-gradient(135deg, rgba(37,30,175,.4), rgba(255,46,147,.3)); }
+.brand-cell:hover { color: var(--ink); background: linear-gradient(135deg, rgba(37,30,175,.12), rgba(255,46,147,.1)); }
 
 /* ---------- AGENCY ---------- */
 .agency-section { padding: 130px 30px; }
@@ -1093,26 +1167,32 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
   border-radius: 32px;
   aspect-ratio: 4/5;
   background:
-    radial-gradient(circle at 30% 20%, rgba(255,46,147,.3), transparent 50%),
-    radial-gradient(circle at 70% 80%, rgba(37,30,175,.4), transparent 50%),
-    #1a1a25;
+    radial-gradient(circle at 30% 20%, rgba(255,46,147,.15), transparent 50%),
+    radial-gradient(circle at 70% 80%, rgba(37,30,175,.15), transparent 50%),
+    #f6f4ef;
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(255,255,255,.1);
-  display: flex; align-items: center; justify-content: center;
-  text-align: center;
-  padding: 40px;
+  border: 1px solid rgba(8,7,15,.08);
+  box-shadow: 0 40px 100px -30px rgba(37,30,175,.25), 0 20px 60px -20px rgba(255,46,147,.15);
 }
+.agency-img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .8s cubic-bezier(.2,.9,.3,1);
+}
+.agency-photo:hover .agency-img { transform: scale(1.04); }
 .photo-placeholder {
   position: relative; z-index: 2;
   font-family: 'Instrument Serif', serif;
   font-style: italic;
-  color: rgba(255,255,255,.5);
+  color: rgba(8,7,15,.5);
   font-size: 18px;
 }
 .photo-placeholder .frame {
   width: 60px; height: 60px;
-  border: 2px dashed rgba(255,255,255,.3);
+  border: 2px dashed rgba(8,7,15,.25);
   border-radius: 50%;
   margin: 0 auto 20px;
   display: flex; align-items: center; justify-content: center;
@@ -1121,12 +1201,12 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
 .agency-bullets { list-style: none; padding: 0; margin-top: 30px; }
 .agency-bullets li {
   padding: 22px 0;
-  border-top: 1px solid rgba(255,255,255,.1);
+  border-top: 1px solid rgba(8,7,15,.1);
   font-size: 16px;
-  color: rgba(255,255,255,.85);
+  color: rgba(8,7,15,.8);
   display: flex; gap: 20px; align-items: baseline;
 }
-.agency-bullets li:last-child { border-bottom: 1px solid rgba(255,255,255,.1); }
+.agency-bullets li:last-child { border-bottom: 1px solid rgba(8,7,15,.1); }
 .agency-bullets strong {
   font-family: 'Instrument Serif', serif;
   font-size: 40px;
@@ -1146,28 +1226,30 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
 .trust-card {
   padding: 32px;
   border-radius: 24px;
-  background: rgba(255,255,255,.03);
-  border: 1px solid rgba(255,255,255,.08);
+  background: #ffffff;
+  border: 1px solid rgba(8,7,15,.08);
   transition: all .4s;
+  box-shadow: 0 10px 30px -20px rgba(8,7,15,.15);
 }
-.trust-card:hover { border-color: rgba(255,46,147,.3); transform: translateY(-6px); }
+.trust-card:hover { border-color: rgba(255,46,147,.4); transform: translateY(-6px); box-shadow: 0 20px 40px -20px rgba(255,46,147,.2); }
 .trust-icon {
   width: 52px; height: 52px;
   border-radius: 16px;
   background: var(--grad);
+  color: white;
   display: flex; align-items: center; justify-content: center;
   margin-bottom: 22px;
   font-size: 22px;
 }
-.trust-title { font-weight: 700; font-size: 17px; margin-bottom: 10px; }
-.trust-desc { font-size: 14px; color: rgba(255,255,255,.65); line-height: 1.55; }
+.trust-title { font-weight: 700; font-size: 17px; margin-bottom: 10px; color: var(--ink); }
+.trust-desc { font-size: 14px; color: rgba(8,7,15,.6); line-height: 1.55; }
 
 /* ---------- SELECTOR ---------- */
 .selector-section {
   padding: 160px 30px;
   background:
-    radial-gradient(50vw 50vh at 50% 0%, rgba(37,30,175,.3), transparent 60%),
-    radial-gradient(50vw 50vh at 50% 100%, rgba(255,46,147,.2), transparent 60%);
+    radial-gradient(50vw 50vh at 50% 0%, rgba(37,30,175,.1), transparent 60%),
+    radial-gradient(50vw 50vh at 50% 100%, rgba(255,46,147,.08), transparent 60%);
 }
 .selector-wrap {
   max-width: 760px;
@@ -1176,6 +1258,73 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
 }
 .selector-title { text-align: center; margin: 0 auto 20px; }
 .selector-subtitle { margin: 0 auto 50px; text-align: center; }
+
+/* ---------- PRIZE ANCHOR (rappel 50K€) ---------- */
+.prize-anchor {
+  position: relative;
+  padding: 34px 30px 30px;
+  margin: 0 auto 50px;
+  max-width: 620px;
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(255,46,147,.14), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(37,30,175,.14), transparent 55%),
+    #ffffff;
+  border: 1px solid rgba(255,46,147,.3);
+  box-shadow: 0 40px 80px -30px rgba(255,46,147,.35), inset 0 1px 0 rgba(255,255,255,.6);
+  overflow: hidden;
+  text-align: center;
+}
+.prize-anchor-glow {
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 120%, rgba(255,210,0,.18), transparent 55%);
+  pointer-events: none;
+}
+.prize-anchor-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 5px 12px;
+  border-radius: 100px;
+  background: rgba(8,7,15,.05);
+  border: 1px solid rgba(8,7,15,.1);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+  color: rgba(8,7,15,.7);
+  margin-bottom: 12px;
+  position: relative; z-index: 2;
+}
+.prize-anchor-tag .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--pink); box-shadow: 0 0 10px var(--pink); animation: pulse 1.5s infinite; }
+.prize-anchor-num {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(80px, 13vw, 150px);
+  line-height: .85;
+  letter-spacing: -.05em;
+  font-weight: 400;
+  position: relative; z-index: 2;
+}
+.prize-anchor-num em {
+  font-style: italic;
+  background: var(--grad-money);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 20px 40px rgba(255,46,147,.35));
+}
+.prize-anchor-num .k {
+  font-style: normal;
+  background: var(--grad-money);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent;
+}
+.prize-anchor-sub {
+  margin-top: 10px;
+  font-size: 14px;
+  color: rgba(8,7,15,.65);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: .3px;
+  position: relative; z-index: 2;
+  display: flex; justify-content: center; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.prize-anchor-sub strong { color: var(--ink); font-weight: 700; }
+.prize-anchor-sub span { color: rgba(8,7,15,.5); }
 
 .tier-strip {
   display: grid;
@@ -1186,23 +1335,24 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
 .tier {
   padding: 22px 14px;
   border-radius: 20px;
-  background: rgba(255,255,255,.03);
-  border: 1px solid rgba(255,255,255,.1);
+  background: #ffffff;
+  border: 1px solid rgba(8,7,15,.08);
   text-align: center;
   position: relative;
   transition: all .4s;
+  box-shadow: 0 6px 20px -12px rgba(8,7,15,.15);
 }
 .tier.active {
-  background: linear-gradient(140deg, rgba(255,46,147,.2), rgba(37,30,175,.15));
+  background: linear-gradient(140deg, rgba(255,46,147,.12), rgba(37,30,175,.08));
   border-color: var(--pink);
-  box-shadow: 0 20px 50px -20px rgba(255,46,147,.6);
+  box-shadow: 0 20px 50px -20px rgba(255,46,147,.45);
   transform: translateY(-4px);
 }
 .tier.done { opacity: .4; }
 .tier-name {
   font-family: 'JetBrains Mono', monospace;
   font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
-  color: rgba(255,255,255,.6);
+  color: rgba(8,7,15,.55);
   margin-bottom: 8px;
 }
 .tier-price {
@@ -1211,18 +1361,20 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
   font-weight: 400;
   line-height: 1;
   font-style: italic;
+  color: var(--ink);
 }
 .tier.active .tier-price { color: var(--pink); }
 .tier-note {
   font-family: 'JetBrains Mono', monospace;
   font-size: 10px;
-  color: rgba(255,255,255,.5);
+  color: rgba(8,7,15,.5);
   margin-top: 8px;
 }
 .tier .badge-active {
   position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
   padding: 3px 10px; border-radius: 100px;
   background: var(--pink);
+  color: white;
   font-family: 'JetBrains Mono', monospace;
   font-size: 8px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
   display: none;
@@ -1233,18 +1385,19 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
   margin: 0 0 40px;
   padding: 24px;
   border-radius: 20px;
-  background: rgba(255,255,255,.03);
-  border: 1px solid rgba(255,255,255,.08);
+  background: #ffffff;
+  border: 1px solid rgba(8,7,15,.08);
+  box-shadow: 0 10px 30px -20px rgba(8,7,15,.15);
 }
 .progress-header {
   display: flex; justify-content: space-between; margin-bottom: 12px;
-  font-size: 13px; color: rgba(255,255,255,.8);
+  font-size: 13px; color: rgba(8,7,15,.75);
   font-family: 'JetBrains Mono', monospace;
   letter-spacing: .5px;
 }
 .progress-header strong { color: var(--pink); }
 .progress-bar {
-  height: 8px; background: rgba(255,255,255,.08);
+  height: 8px; background: rgba(8,7,15,.08);
   border-radius: 100px; overflow: hidden; margin-bottom: 12px;
 }
 .progress-fill {
@@ -1256,23 +1409,24 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
 }
 .progress-note {
   font-size: 12px;
-  color: rgba(255,255,255,.55);
+  color: rgba(8,7,15,.55);
   font-family: 'JetBrains Mono', monospace;
 }
-.progress-note strong { color: white; }
+.progress-note strong { color: var(--ink); }
 
 .selector-box {
   padding: 44px;
   border-radius: 32px;
-  background: rgba(255,255,255,.04);
-  border: 1px solid rgba(255,255,255,.12);
+  background: #ffffff;
+  border: 1px solid rgba(8,7,15,.08);
   backdrop-filter: blur(30px);
+  box-shadow: 0 40px 100px -30px rgba(8,7,15,.2);
 }
 
 .qty-lbl {
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
-  color: rgba(255,255,255,.6);
+  color: rgba(8,7,15,.55);
   margin-bottom: 20px;
 }
 
@@ -1284,14 +1438,14 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
 .qty-btn {
   width: 62px; height: 62px;
   border-radius: 50%;
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.15);
-  color: white; font-size: 26px;
+  background: rgba(8,7,15,.04);
+  border: 1px solid rgba(8,7,15,.1);
+  color: var(--ink); font-size: 26px;
   cursor: pointer;
   transition: all .3s;
   display: flex; align-items: center; justify-content: center;
 }
-.qty-btn:hover { background: rgba(255,46,147,.2); border-color: var(--pink); transform: scale(1.1); }
+.qty-btn:hover { background: rgba(255,46,147,.15); border-color: var(--pink); color: var(--pink); transform: scale(1.1); }
 .qty-val {
   font-family: 'Instrument Serif', serif;
   font-size: 100px; font-weight: 400;
@@ -1311,19 +1465,20 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
 .qty-preset {
   padding: 10px 20px;
   border-radius: 100px;
-  background: rgba(255,255,255,.05);
-  border: 1px solid rgba(255,255,255,.12);
-  font-size: 13px; color: rgba(255,255,255,.85);
+  background: rgba(8,7,15,.04);
+  border: 1px solid rgba(8,7,15,.1);
+  font-size: 13px; color: rgba(8,7,15,.8);
   cursor: pointer;
   transition: all .3s;
   position: relative;
   font-family: 'JetBrains Mono', monospace;
   letter-spacing: .5px;
 }
-.qty-preset:hover { background: rgba(255,46,147,.15); border-color: var(--pink); color: white; }
+.qty-preset:hover { background: rgba(255,46,147,.12); border-color: var(--pink); color: var(--pink); }
 .qty-preset.popular {
-  background: linear-gradient(115deg, rgba(255,46,147,.25), rgba(37,30,175,.2));
+  background: linear-gradient(115deg, rgba(255,46,147,.15), rgba(37,30,175,.1));
   border-color: var(--pink);
+  color: var(--ink);
 }
 .qty-preset.popular::after {
   content: '★ POPULAIRE';
@@ -1338,12 +1493,12 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
 .total-row {
   display: flex; align-items: baseline; justify-content: space-between;
   padding: 22px 0;
-  border-top: 1px solid rgba(255,255,255,.1);
+  border-top: 1px solid rgba(8,7,15,.1);
   margin-bottom: 24px;
 }
 .total-lbl {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 12px; color: rgba(255,255,255,.6);
+  font-size: 12px; color: rgba(8,7,15,.55);
   text-transform: uppercase; letter-spacing: 1.5px;
 }
 .total-val {
@@ -1352,32 +1507,33 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
   line-height: 1;
   letter-spacing: -.02em;
   font-style: italic;
+  color: var(--ink);
 }
 .chances-row {
   display: flex; justify-content: space-between; align-items: center;
   font-size: 13px;
-  color: rgba(255,255,255,.65);
+  color: rgba(8,7,15,.65);
   padding-bottom: 20px;
   margin-bottom: 20px;
-  border-bottom: 1px solid rgba(255,255,255,.08);
+  border-bottom: 1px solid rgba(8,7,15,.08);
   font-family: 'JetBrains Mono', monospace;
 }
 .chances-row strong { color: var(--pink); font-size: 15px; }
 
 .selector-perks {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 12px;
   margin: 24px 0 30px;
   padding: 20px;
-  background: rgba(255,255,255,.03);
-  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(8,7,15,.03);
+  border: 1px solid rgba(8,7,15,.06);
   border-radius: 20px;
 }
 .selector-perks .perk {
   display: flex; align-items: center; gap: 10px;
   font-size: 12px;
-  color: rgba(255,255,255,.85);
+  color: rgba(8,7,15,.8);
   text-align: left;
 }
 .selector-perks .perk .em { font-size: 22px; flex-shrink: 0; }
@@ -1405,7 +1561,7 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
   margin-top: 24px;
   display: flex; justify-content: center; align-items: center; gap: 24px;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 11px; color: rgba(255,255,255,.55);
+  font-size: 11px; color: rgba(8,7,15,.55);
   flex-wrap: wrap;
   letter-spacing: .5px;
 }
@@ -1414,32 +1570,34 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
 /* ---------- FAQ ---------- */
 .faq-list { max-width: 900px; margin: 0 auto; }
 .faq-item {
-  border-top: 1px solid rgba(255,255,255,.1);
+  border-top: 1px solid rgba(8,7,15,.1);
   padding: 26px 0;
   cursor: pointer;
 }
-.faq-item:last-child { border-bottom: 1px solid rgba(255,255,255,.1); }
+.faq-item:last-child { border-bottom: 1px solid rgba(8,7,15,.1); }
 .faq-q { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
 .faq-q-txt {
   font-family: 'Instrument Serif', serif;
   font-size: clamp(20px, 2.2vw, 28px);
   letter-spacing: -.01em;
   line-height: 1.3;
+  color: var(--ink);
 }
 .faq-icon {
   width: 36px; height: 36px;
   border-radius: 50%;
-  border: 1px solid rgba(255,255,255,.2);
+  border: 1px solid rgba(8,7,15,.15);
+  color: var(--ink);
   display: flex; align-items: center; justify-content: center;
   font-size: 20px;
   flex-shrink: 0;
   transition: all .3s;
 }
-.faq-item.open .faq-icon { background: var(--pink); border-color: var(--pink); transform: rotate(45deg); }
+.faq-item.open .faq-icon { background: var(--pink); border-color: var(--pink); color: white; transform: rotate(45deg); }
 .faq-a { max-height: 0; overflow: hidden; transition: max-height .5s cubic-bezier(.2,.9,.3,1); }
 .faq-a-inner {
   padding-top: 20px;
-  color: rgba(255,255,255,.75);
+  color: rgba(8,7,15,.7);
   font-size: 15px; line-height: 1.6;
   max-width: 720px;
 }
@@ -1457,7 +1615,7 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
 .final-emo {
   position: absolute;
   font-size: 200px;
-  opacity: .05;
+  opacity: .08;
   pointer-events: none;
 }
 .final-emo.e1 { top: 10%; left: 5%; transform: rotate(-15deg); }
@@ -1468,6 +1626,8 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
 /* ---------- FOOTER ---------- */
 footer {
   padding: 80px 30px 60px;
+  background: var(--ink);
+  color: var(--paper);
   border-top: 1px solid rgba(255,255,255,.08);
   position: relative; z-index: 2;
 }
@@ -1487,6 +1647,7 @@ footer {
   font-family: 'Instrument Serif', serif;
   font-size: 40px; margin-bottom: 20px;
   font-style: italic;
+  color: white;
 }
 .footer-tagline { color: rgba(255,255,255,.55); font-size: 14px; line-height: 1.6; max-width: 340px; }
 .footer-bottom {
@@ -1504,10 +1665,10 @@ footer {
   position: fixed; bottom: 20px; left: 20px; right: 20px;
   padding: 14px 22px;
   border-radius: 100px;
-  background: rgba(8,7,15,.85);
+  background: rgba(8,7,15,.92);
   backdrop-filter: blur(30px);
-  border: 1px solid rgba(255,46,147,.4);
-  box-shadow: 0 20px 60px rgba(0,0,0,.5);
+  border: 1px solid rgba(255,46,147,.5);
+  box-shadow: 0 20px 60px rgba(8,7,15,.25);
   z-index: 90;
   display: flex; align-items: center; justify-content: space-between; gap: 20px;
   transform: translateY(140%);
@@ -1560,18 +1721,99 @@ footer {
   .deal-eq { font-size: 60px; gap: 15px; }
 }
 @media (max-width: 600px) {
+  section { padding: 70px 16px; }
+  .hero { padding: 90px 16px 30px; }
   .hero-mega { font-size: clamp(90px, 22vw, 160px); }
+  .hero-sub { font-size: 14px; margin-bottom: 30px; }
+  .hero-cta-row { flex-direction: column; width: 100%; gap: 12px; }
+  .hero-cta-row .btn-huge,
+  .hero-cta-row .btn-ghost { width: 100%; justify-content: center; padding: 20px 20px; font-size: 15px; }
+  .hero-countdown { margin-top: 40px; gap: 4px; }
+  .cd-item { min-width: 62px; padding: 10px 6px; }
+  .cd-num { font-size: 30px; }
+  .cd-lbl { font-size: 8px; }
   .footer-top { grid-template-columns: 1fr; }
   .brands-grid { grid-template-columns: repeat(2, 1fr); }
-  .sticky-bar { padding: 10px 14px 10px 18px; }
+  .brand-cell { font-size: 16px; padding: 14px; aspect-ratio: 1.4/1; }
+  .sticky-bar { padding: 10px 14px 10px 18px; left: 12px; right: 12px; bottom: 12px; }
   .sticky-info { font-size: 10px; }
   .sticky-cta { padding: 8px 14px; font-size: 11px; }
-  .qty-val { font-size: 72px; }
-  .phone { transform: scale(.85) rotate(-3deg); }
-  .qty-btn { width: 52px; height: 52px; }
-  .checkout-trust { gap: 12px; font-size: 10px; }
+  .qty-val { font-size: 64px; min-width: 110px; }
+  .qty-row { gap: 14px; }
+  .phone { transform: scale(.78) rotate(-3deg); transform-origin: center; margin: -30px auto; }
+  .phone .float-emo { font-size: 32px; }
+  .qty-btn { width: 52px; height: 52px; font-size: 22px; }
+  .checkout-trust { gap: 10px; font-size: 10px; }
+  .checkout-btn { padding: 20px; font-size: 15px; }
   .marquee-item { font-size: 40px; gap: 20px; }
-  h2.title { font-size: 44px; }
+  .marquee { padding: 22px 0; margin: 10px 0; }
+  h2.title { font-size: 42px; line-height: 1; }
+  .subtitle { font-size: 15px; margin-bottom: 40px; }
+  .deal-section { padding: 60px 16px; }
+  .deal-wrap { padding: 32px 20px; border-radius: 28px; }
+  .deal-eq { font-size: 42px; gap: 10px; }
+  .deal-card { padding: 30px 24px; }
+  .deal-title { font-size: 26px; }
+  .deal-emo { font-size: 56px; margin-bottom: 20px; }
+  .prize-card { padding: 80px 24px 28px; }
+  .prize-1 { min-height: 460px; }
+  .prize-1-amount { font-size: 84px; }
+  .prize-1-desc { font-size: 22px; }
+  .prize-1-badge { top: 20px; right: 20px; }
+  .prize-chamas .content, .prize-cash .content { max-width: 70%; }
+  .lot-tag { top: 20px; left: 20px; padding: 8px 14px 10px; gap: 6px; }
+  .lot-tag-lbl { font-size: 10px; letter-spacing: 2px; }
+  .lot-tag-num { font-size: 28px; }
+  .chamas-taco { font-size: 160px; top: -20px; right: -40px; }
+  .cash-emo { font-size: 140px; }
+  .steps-section { padding: 60px 16px; }
+  .step-card { padding: 34px 24px 28px; }
+  .step-big-num { font-size: 100px; top: 12px; right: 20px; }
+  .step-title { font-size: 26px; }
+  .chamas-inner { padding: 50px 20px; gap: 30px; }
+  .chamas-title { font-size: 46px; }
+  .chamas-desc { font-size: 16px; }
+  .chamas-stats { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .chamas-stat { padding: 12px 10px; }
+  .chamas-stat-num { font-size: 26px; }
+  .chamas-visual { height: 240px; }
+  .taco-hero { font-size: 160px; }
+  .live-wrap { padding: 24px 20px; border-radius: 24px; }
+  .live-count { font-size: 42px; }
+  .live-stack { min-width: 0; width: 100%; }
+  .agency-photo { aspect-ratio: 5/4; }
+  .agency-bullets li { padding: 16px 0; gap: 14px; flex-wrap: wrap; }
+  .agency-bullets strong { font-size: 32px; min-width: 70px; }
+  .trust-grid { grid-template-columns: 1fr; gap: 14px; margin-top: 30px; }
+  .trust-card { padding: 24px; }
+  .ref-section { padding: 60px 16px; }
+  .ref-grid { gap: 40px; }
+  .selector-section { padding: 80px 16px 100px; }
+  .selector-box { padding: 28px 20px; border-radius: 24px; }
+  .tier-strip { gap: 6px; }
+  .tier { padding: 16px 6px; border-radius: 14px; }
+  .tier-name { font-size: 8px; letter-spacing: 1.2px; }
+  .tier-price { font-size: 28px; }
+  .tier-note { font-size: 8px; }
+  .tier .badge-active { font-size: 7px; padding: 2px 8px; }
+  .progress-wrap { padding: 18px; }
+  .progress-header { flex-direction: column; gap: 6px; font-size: 11px; }
+  .progress-note { font-size: 11px; }
+  .selector-perks { padding: 16px; gap: 10px; }
+  .selector-perks .perk { font-size: 12px; }
+  .total-val { font-size: 40px; }
+  .chances-row { flex-direction: column; gap: 6px; text-align: center; font-size: 12px; }
+  .qty-presets { gap: 8px; }
+  .qty-preset { padding: 8px 14px; font-size: 12px; }
+  .qty-preset.popular::after { font-size: 7px; padding: 2px 6px; top: -8px; right: -2px; }
+  .prize-anchor { padding: 26px 20px 22px; margin-bottom: 36px; border-radius: 24px; }
+  .prize-anchor-num { font-size: 90px; }
+  .prize-anchor-sub { font-size: 11px; gap: 6px; }
+  .final-cta { padding: 80px 16px; }
+  .faq-q-txt { font-size: 18px; }
+  .faq-a-inner { font-size: 14px; }
+  footer { padding: 60px 20px 40px; }
+  .footer-brand { font-size: 32px; }
 }
 
 </style>
@@ -1594,19 +1836,16 @@ footer {
 <header class="hero" id="hero">
   <div class="money-rain" id="rain"></div>
 
-  <div class="hero-pill">
-    <span class="hero-pill-dot"></span>
-    Édition #01 · Réservé aux créateurs FR (500+ abo)
-  </div>
+  <div class="hero-kicker"><em>Tu es créateur sur Instagram ?</em></div>
 
-  <div class="hero-kicker">Scalevision offre à <em>1 créateur</em></div>
+  <div class="hero-punch-top">Tente ta chance pour gagner</div>
 
   <h1 class="hero-mega"><em>50<span class="euro">K€</span></em></h1>
 
   <div class="hero-punch">de contrats <em>de marque</em>.</div>
 
   <p class="hero-sub">
-    <strong>+ 1 an de Chamas Tacos</strong> 🌮 · <strong>+ 1 000€ cash</strong> 💸 · et un <span class="hl">accès à l'event Scalevision Paris offert avec chaque placement</span>. Non, t'as jamais rien à perdre.
+    <strong>+ 1 an de Chamas Tacos</strong> 🌮 <strong>+ 1 000€ cash</strong> 💸 — <span class="hl">3 lots à gagner, un seul gagnant par lot</span>.
   </p>
 
   <div class="hero-cta-row">
@@ -1631,11 +1870,11 @@ footer {
     <span class="marquee-item">50 000€ de contrats <span class="emo">💸</span></span>
     <span class="marquee-item">1 an de Chamas <span class="emo">🌮</span></span>
     <span class="marquee-item">1 000€ cash <span class="emo">💰</span></span>
-    <span class="marquee-item">Event Scalevision Paris <span class="emo">✨</span></span>
+    <span class="marquee-item">3 lots · 3 gagnants <span class="emo">🎰</span></span>
     <span class="marquee-item">50 000€ de contrats <span class="emo">💸</span></span>
     <span class="marquee-item">1 an de Chamas <span class="emo">🌮</span></span>
     <span class="marquee-item">1 000€ cash <span class="emo">💰</span></span>
-    <span class="marquee-item">Event Scalevision Paris <span class="emo">✨</span></span>
+    <span class="marquee-item">3 lots · 3 gagnants <span class="emo">🎰</span></span>
   </div>
 </div>
 
@@ -1650,28 +1889,28 @@ footer {
           <span class="op">=</span>
           <span>1 placement</span>
           <span class="op">=</span>
-          <span class="val">3 cadeaux</span>
+          <span class="val">3 chances</span>
         </div>
       </div>
 
       <div class="deal-3col">
         <div class="deal-card">
-          <div class="deal-emo">🎫</div>
-          <div class="deal-num">CADEAU 01</div>
-          <div class="deal-title">Un accès à l'event Scalevision Paris</div>
-          <p class="deal-desc">Une soirée exclusive avec toute l'équipe, nos marques partenaires et les meilleurs créateurs FR. Networking, food, cocktails. Automne 2026 · Paris.</p>
-        </div>
-        <div class="deal-card">
-          <div class="deal-emo">🎰</div>
-          <div class="deal-num">CADEAU 02</div>
+          <div class="deal-emo">💰</div>
+          <div class="deal-num">CHANCE 01</div>
           <div class="deal-title">1 chance de gagner 50 000€</div>
           <p class="deal-desc">Le grand lot : 50 000€ de contrats de brand deals sur 12 mois avec nos marques partenaires. Toutes niches. 100% du pool pour toi. Zéro commission.</p>
         </div>
         <div class="deal-card">
-          <div class="deal-emo">🎁</div>
-          <div class="deal-num">CADEAU 03</div>
-          <div class="deal-title">1 chance de gagner Chamas + cash</div>
-          <p class="deal-desc">Lot 2 : 1 an de Chamas Tacos (partenariat officiel). Lot 3 : 1 000€ cash en virement sous 48h. Les 3 lots sont cumulables.</p>
+          <div class="deal-emo">🌮</div>
+          <div class="deal-num">CHANCE 02</div>
+          <div class="deal-title">1 chance de gagner 1 an de Chamas</div>
+          <p class="deal-desc">Partenariat officiel avec Chamas Tacos : 3 menus/semaine pendant 52 semaines. Valeur : 2 340€. Retrait dans le Chamas de ton choix.</p>
+        </div>
+        <div class="deal-card">
+          <div class="deal-emo">💸</div>
+          <div class="deal-num">CHANCE 03</div>
+          <div class="deal-title">1 chance de gagner 1 000€ cash</div>
+          <p class="deal-desc">1 000€ envoyés en virement direct sous 48h. Zéro fiscal côté agence. Ton cash, tu en fais ce que tu veux. Les 3 lots sont cumulables.</p>
         </div>
       </div>
     </div>
@@ -1695,15 +1934,15 @@ footer {
 <!-- ============ PRIZES BENTO ============ -->
 <section id="lots">
   <div class="wrap">
-    <div class="reveal">
-      <div class="section-tag"><span class="dot"></span>Les 3 lots</div>
-      <h2 class="title">Le pool <em>le plus fou</em> jamais mis sur la table.</h2>
-      <p class="subtitle">Un seul gagnant par lot. Tirage au sort supervisé par huissier. Cumulables : tu peux tout rafler.</p>
+    <div class="reveal" style="text-align: center;">
+      <div class="section-tag" style="display: inline-flex; margin: 0 auto 24px;"><span class="dot"></span>Les 3 lots à gagner</div>
+      <h2 class="title" style="text-align: center; margin: 0 auto 24px;">Les 3 lots <em>à gagner</em>.</h2>
+      <p class="subtitle" style="text-align: center; margin: 0 auto 60px;"><strong style="color: var(--ink);">3 gagnants tirés au sort le 31 août 2026</strong> · Un gagnant par lot · Tirage supervisé par huissier.</p>
     </div>
 
     <div class="prizes-bento">
       <div class="prize-card prize-1 reveal">
-        <div class="prize-1-badge">Lot #1 · Grand prix</div>
+        <div class="lot-tag lot-tag-1"><span class="lot-tag-lbl">Lot</span><span class="lot-tag-num">1</span></div>
 
         <div class="money-icon mi-1">💰</div>
         <div class="money-icon mi-2">💵</div>
@@ -1721,9 +1960,9 @@ footer {
       </div>
 
       <div class="prize-card prize-chamas reveal">
+        <div class="lot-tag lot-tag-2"><span class="lot-tag-lbl">Lot</span><span class="lot-tag-num">2</span></div>
         <div class="chamas-taco">🌮</div>
         <div class="content">
-          <div class="rank">Lot #2 · Le kif</div>
           <div class="big">1 an</div>
           <div class="lbl">de Chamas Tacos<br>offert.</div>
           <div class="details">3 menus/semaine × 52 semaines. Partenariat officiel signé. Valeur : 2 340€.</div>
@@ -1731,9 +1970,9 @@ footer {
       </div>
 
       <div class="prize-card prize-cash reveal">
+        <div class="lot-tag lot-tag-3"><span class="lot-tag-lbl">Lot</span><span class="lot-tag-num">3</span></div>
         <div class="cash-emo">💸</div>
         <div class="content">
-          <div class="rank">Lot #3 · Le cash</div>
           <div class="big">1 000€</div>
           <div class="lbl">en virement direct sous 48h.</div>
           <div class="details">Zéro fiscal à gérer côté agence. Achète ton setup, ton billet d'avion, ou refile-le à ton pote. C'est ton cash.</div>
@@ -1774,8 +2013,7 @@ footer {
         <div class="step-num">STEP 01</div>
         <h3 class="step-title">Tu prends tes Placements</h3>
         <p class="step-desc">
-          Dès 10€ le placement. Plus t'en prends, plus tu multiplies tes chances.
-          <strong>Chaque placement = 1 accès à l'event Scalevision Paris.</strong> Cadeau garanti.
+          Dès 10€ le placement. <strong>Plus t'en prends, plus tu multiplies tes chances</strong> aux 3 tirages. Paiement Stripe sécurisé, tarif verrouillé à vie.
         </p>
       </div>
       <div class="step-card reveal">
@@ -1837,53 +2075,6 @@ footer {
   </div>
 </section>
 
-<!-- ============ REFERRAL ============ -->
-<section class="ref-section">
-  <div class="wrap">
-    <div class="ref-grid">
-      <div class="ref-content reveal">
-        <div class="section-tag"><span class="dot"></span>Système parrainage</div>
-        <h2 class="title">Partage.<br><em>Multiplie</em> tes chances<br>gratos.</h2>
-        <p class="subtitle">Un ami qui prend son placement via ton lien = 1 placement offert pour toi. Aucun plafond. Aucun plafond. (Oui, c'est écrit deux fois.)</p>
-        <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-          <div style="padding: 20px 24px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); border-radius: 20px; min-width: 160px;">
-            <div style="font-family: 'Instrument Serif', serif; font-size: 44px; font-style: italic; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; line-height: 1;">1 : 1</div>
-            <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 1.5px; color: rgba(255,255,255,.6); margin-top: 8px; text-transform: uppercase;">Filleul → Placement</div>
-          </div>
-          <div style="padding: 20px 24px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); border-radius: 20px; min-width: 160px;">
-            <div style="font-family: 'Instrument Serif', serif; font-size: 44px; font-style: italic; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; line-height: 1;">∞</div>
-            <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 1.5px; color: rgba(255,255,255,.6); margin-top: 8px; text-transform: uppercase;">Plafond</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="ref-visual reveal">
-        <div class="phone">
-          <div class="story-bg"></div>
-          <div class="story-progress"><div class="story-progress-fill"></div></div>
-          <div class="story-header">
-            <div class="story-avatar"></div>
-            <div>
-              <div class="story-name">@toi</div>
-              <div class="story-time">il y a 2 min</div>
-            </div>
-          </div>
-          <div class="story-content">
-            <div class="story-tag">✨ Scalevision Édition #01</div>
-            <div class="story-headline">50K€ à gagner.<br>Mon lien ↓</div>
-            <div class="story-sub">Chaque pote qui prend son ticket avec mon lien = 1 ticket offert pour moi 🚀</div>
-            <div class="story-cta">Prendre mes placements →</div>
-          </div>
-          <div class="story-swipe">SWIPE UP<span class="arr">↑</span></div>
-          <div class="float-emo e1">💸</div>
-          <div class="float-emo e2">🌮</div>
-          <div class="float-emo e3">🎫</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ============ BRANDS ============ -->
 <section class="brands-section">
   <div class="wrap">
@@ -1915,10 +2106,7 @@ footer {
   <div class="wrap">
     <div class="agency-grid">
       <div class="agency-photo reveal">
-        <div class="photo-placeholder">
-          <div class="frame">📸</div>
-          Photo de l'équipe<br/>[à remplacer]
-        </div>
+        <img src="https://scalevision.s3.eu-north-1.amazonaws.com/video_site/ugcademie.png" alt="UGCadémie · Scalevision" class="agency-img" />
       </div>
       <div class="agency-text reveal">
         <div class="section-tag"><span class="dot"></span>Qui on est</div>
@@ -1934,43 +2122,16 @@ footer {
   </div>
 </section>
 
-<!-- ============ TRUST ============ -->
-<section>
-  <div class="wrap">
-    <div class="reveal">
-      <div class="section-tag"><span class="dot"></span>Sécurité & transparence</div>
-      <h2 class="title">On sait que <em>sortir du cash</em> c'est chelou.<br>Alors on blinde tout.</h2>
-    </div>
-
-    <div class="trust-grid">
-      <div class="trust-card reveal">
-        <div class="trust-icon">🔒</div>
-        <div class="trust-title">Paiement Stripe</div>
-        <p class="trust-desc">Aucune donnée bancaire n'atterrit chez nous. Cryptage SSL 256-bit, la même stack qu'Apple ou Shopify.</p>
-      </div>
-      <div class="trust-card reveal">
-        <div class="trust-icon">⚖️</div>
-        <div class="trust-title">Huissier de justice</div>
-        <p class="trust-desc">Tirage supervisé par Maître [Nom], huissier à Paris. Procès-verbal disponible sur simple demande.</p>
-      </div>
-      <div class="trust-card reveal">
-        <div class="trust-icon">📄</div>
-        <div class="trust-title">Règlement déposé</div>
-        <p class="trust-desc">Règlement complet déposé chez l'huissier. Téléchargeable ici : conditions, mécanique, obligations.</p>
-      </div>
-      <div class="trust-card reveal">
-        <div class="trust-icon">🎥</div>
-        <div class="trust-title">Live public</div>
-        <p class="trust-desc">Tirage en direct sur Instagram, archivé en story à la une. Aucune manipulation possible.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ============ SELECTOR ============ -->
 <section class="selector-section" id="placements">
   <div class="selector-wrap">
     <div class="reveal">
+      <div class="prize-anchor">
+        <div class="prize-anchor-glow"></div>
+        <div class="prize-anchor-tag"><span class="dot"></span>Ce que tu vises</div>
+        <div class="prize-anchor-num"><em>50</em><span class="k">K€</span></div>
+        <div class="prize-anchor-sub">de <strong>contrats de marque</strong> · <span>+ 1 an Chamas</span> · <span>+ 1 000€ cash</span></div>
+      </div>
       <div class="section-tag" style="display: inline-flex; margin: 0 auto 20px;"><span class="dot"></span>Passer à l'action</div>
       <h2 class="title selector-title">Combien tu <em>en prends</em>.</h2>
       <p class="subtitle selector-subtitle">Le prix augmente à chaque palier. Bloquer tes placements maintenant, c'est verrouiller le tarif le plus bas.</p>
@@ -2023,8 +2184,7 @@ footer {
         </div>
 
         <div class="selector-perks">
-          <div class="perk"><span class="em">🎫</span> <span id="perk-event">10 accès event garantis</span></div>
-          <div class="perk"><span class="em">🎰</span> <span id="perk-chances">10 chances aux tirages</span></div>
+          <div class="perk"><span class="em">🎰</span> <span id="perk-chances">10 chances aux 3 tirages</span></div>
           <div class="perk"><span class="em">📲</span> Lien de parrainage inclus</div>
         </div>
 
@@ -2052,6 +2212,86 @@ footer {
   </div>
 </section>
 
+<!-- ============ REFERRAL ============ -->
+<section class="ref-section">
+  <div class="wrap">
+    <div class="ref-grid">
+      <div class="ref-content reveal">
+        <div class="section-tag"><span class="dot"></span>Système parrainage</div>
+        <h2 class="title">Partage.<br><em>Multiplie</em> tes chances<br>gratos.</h2>
+        <p class="subtitle">Un ami qui prend son placement via ton lien = 1 placement offert pour toi. Aucun plafond. Aucun plafond. (Oui, c'est écrit deux fois.)</p>
+        <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+          <div style="padding: 20px 24px; background: #ffffff; border: 1px solid rgba(8,7,15,.08); border-radius: 20px; min-width: 160px; box-shadow: 0 10px 30px -20px rgba(8,7,15,.15);">
+            <div style="font-family: 'Instrument Serif', serif; font-size: 44px; font-style: italic; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; line-height: 1;">1 : 1</div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 1.5px; color: rgba(8,7,15,.55); margin-top: 8px; text-transform: uppercase;">Filleul → Placement</div>
+          </div>
+          <div style="padding: 20px 24px; background: #ffffff; border: 1px solid rgba(8,7,15,.08); border-radius: 20px; min-width: 160px; box-shadow: 0 10px 30px -20px rgba(8,7,15,.15);">
+            <div style="font-family: 'Instrument Serif', serif; font-size: 44px; font-style: italic; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; line-height: 1;">∞</div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 1.5px; color: rgba(8,7,15,.55); margin-top: 8px; text-transform: uppercase;">Plafond</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ref-visual reveal">
+        <div class="phone">
+          <div class="story-bg"></div>
+          <div class="story-progress"><div class="story-progress-fill"></div></div>
+          <div class="story-header">
+            <div class="story-avatar"></div>
+            <div>
+              <div class="story-name">@toi</div>
+              <div class="story-time">il y a 2 min</div>
+            </div>
+          </div>
+          <div class="story-content">
+            <div class="story-tag">✨ Scalevision Édition #01</div>
+            <div class="story-headline">50K€ à gagner.<br>Mon lien ↓</div>
+            <div class="story-sub">Chaque pote qui prend son ticket avec mon lien = 1 ticket offert pour moi 🚀</div>
+            <div class="story-cta">Prendre mes placements →</div>
+          </div>
+          <div class="story-swipe">SWIPE UP<span class="arr">↑</span></div>
+          <div class="float-emo e1">💸</div>
+          <div class="float-emo e2">🌮</div>
+          <div class="float-emo e3">🎫</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRUST ============ -->
+<section>
+  <div class="wrap">
+    <div class="reveal">
+      <div class="section-tag"><span class="dot"></span>Sécurité & transparence</div>
+      <h2 class="title">On sait que <em>sortir du cash</em> c'est chelou.<br>Alors on blinde tout.</h2>
+    </div>
+
+    <div class="trust-grid">
+      <div class="trust-card reveal">
+        <div class="trust-icon">🔒</div>
+        <div class="trust-title">Paiement Stripe</div>
+        <p class="trust-desc">Aucune donnée bancaire n'atterrit chez nous. Cryptage SSL 256-bit, la même stack qu'Apple ou Shopify.</p>
+      </div>
+      <div class="trust-card reveal">
+        <div class="trust-icon">⚖️</div>
+        <div class="trust-title">Huissier de justice</div>
+        <p class="trust-desc">Tirage supervisé par Maître [Nom], huissier à Paris. Procès-verbal disponible sur simple demande.</p>
+      </div>
+      <div class="trust-card reveal">
+        <div class="trust-icon">📄</div>
+        <div class="trust-title">Règlement déposé</div>
+        <p class="trust-desc">Règlement complet déposé chez l'huissier. Téléchargeable ici : conditions, mécanique, obligations.</p>
+      </div>
+      <div class="trust-card reveal">
+        <div class="trust-icon">🎥</div>
+        <div class="trust-title">Live public</div>
+        <p class="trust-desc">Tirage en direct sur Instagram, archivé en story à la une. Aucune manipulation possible.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ FAQ ============ -->
 <section>
   <div class="wrap" style="max-width: 960px;">
@@ -2064,10 +2304,6 @@ footer {
       <div class="faq-item">
         <div class="faq-q"><div class="faq-q-txt">C'est légal comme mécanique ?</div><div class="faq-icon">+</div></div>
         <div class="faq-a"><div class="faq-a-inner">Oui. Loterie commerciale avec obligation d'achat, règlement déposé chez huissier de justice, conforme au Code de la consommation. Mécanique transparente, tirage public en live.</div></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q"><div class="faq-q-txt">C'est quoi l'event Scalevision offert ?</div><div class="faq-icon">+</div></div>
-        <div class="faq-a"><div class="faq-a-inner">Une soirée exclusive à Paris, automne 2026, avec toute l'équipe Scalevision, les marques partenaires du concours et les créateurs FR les plus intéressants du moment. Networking, food, cocktails, sessions de pitch avec les marques. Chaque placement pris = 1 accès garanti à l'event, quelles que soient les résultats du tirage.</div></div>
       </div>
       <div class="faq-item">
         <div class="faq-q"><div class="faq-q-txt">Comment marche le parrainage ?</div><div class="faq-icon">+</div></div>
@@ -2189,8 +2425,8 @@ document.querySelectorAll('a, button, .qty-preset, .faq-item, .prize-card, .step
 });
 
 /* ===== HERO ANIMS ===== */
-gsap.set('.hero-pill', { opacity: 0, y: 30 });
 gsap.set('.hero-kicker', { opacity: 0, y: 30 });
+gsap.set('.hero-punch-top', { opacity: 0, y: 20 });
 gsap.set('.hero-mega', { opacity: 0, y: 80, scale: .8 });
 gsap.set('.hero-punch', { opacity: 0, y: 30 });
 gsap.set('.hero-sub', { opacity: 0, y: 30 });
@@ -2201,8 +2437,8 @@ gsap.set('.scroll-hint', { opacity: 0 });
 const heroTl = gsap.timeline({ delay: .05 });
 heroTl
   .to('.hero-mega', { opacity: 1, y: 0, scale: 1, duration: 1, ease: 'back.out(1.4)' }, 0)
-  .to('.hero-pill', { opacity: 1, y: 0, duration: .6, ease: 'power3.out' }, 0)
-  .to('.hero-kicker', { opacity: 1, y: 0, duration: .6, ease: 'power3.out' }, .15)
+  .to('.hero-kicker', { opacity: 1, y: 0, duration: .6, ease: 'power3.out' }, 0)
+  .to('.hero-punch-top', { opacity: 1, y: 0, duration: .5, ease: 'power3.out' }, .2)
   .to('.hero-punch', { opacity: 1, y: 0, duration: .6, ease: 'power3.out' }, .35)
   .to('.hero-sub', { opacity: 1, y: 0, duration: .6, ease: 'power3.out' }, .5)
   .to('.hero-cta-row', { opacity: 1, y: 0, duration: .6, ease: 'power3.out' }, .65)
@@ -2359,7 +2595,6 @@ const totalValEl = document.getElementById('total-val');
 const chancesValEl = document.getElementById('chances-val');
 const chancesBoostEl = document.getElementById('chances-boost');
 const checkoutBtn = document.getElementById('checkout');
-const perkEventEl = document.getElementById('perk-event');
 const perkChancesEl = document.getElementById('perk-chances');
 
 function updateTotal() {
@@ -2371,8 +2606,7 @@ function updateTotal() {
   const chancesInverse = Math.round(pool / qty);
   chancesValEl.textContent = `1 / ${chancesInverse.toLocaleString('fr-FR')}`;
   chancesBoostEl.textContent = qty === 1 ? 'chances de base' : `×${qty} vs 1 placement`;
-  perkEventEl.textContent = `${qty} accès event ${qty > 1 ? 'garantis' : 'garanti'}`;
-  perkChancesEl.textContent = `${qty} chance${qty>1?'s':''} au tirage`;
+  perkChancesEl.textContent = `${qty} chance${qty>1?'s':''} aux 3 tirages`;
   checkoutBtn.textContent = `Verrouiller mes ${qty} placement${qty>1?'s':''} à ${price}€ →`;
 }
 
