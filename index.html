@@ -1482,12 +1482,15 @@ h2.title .strike.in::after { animation: strike 1s cubic-bezier(.2,.9,.3,1) forwa
 }
 .qty-preset.popular::after {
   content: '★ POPULAIRE';
-  position: absolute; top: -10px; right: -5px;
-  padding: 3px 8px;
+  position: absolute; top: -10px; left: 50%;
+  transform: translateX(-50%);
+  padding: 3px 10px;
   background: var(--pink); color: white;
   font-size: 8px; font-weight: 700; letter-spacing: 1px;
   border-radius: 100px;
   font-family: 'JetBrains Mono', monospace;
+  white-space: nowrap;
+  line-height: 1;
 }
 
 .total-row {
@@ -1805,7 +1808,7 @@ footer {
   .chances-row { flex-direction: column; gap: 6px; text-align: center; font-size: 12px; }
   .qty-presets { gap: 8px; }
   .qty-preset { padding: 8px 14px; font-size: 12px; }
-  .qty-preset.popular::after { font-size: 7px; padding: 2px 6px; top: -8px; right: -2px; }
+  .qty-preset.popular::after { font-size: 7px; padding: 2px 8px; top: -7px; }
   .prize-anchor { padding: 26px 20px 22px; margin-bottom: 36px; border-radius: 24px; }
   .prize-anchor-num { font-size: 90px; }
   .prize-anchor-sub { font-size: 11px; gap: 6px; }
