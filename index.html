@@ -2395,8 +2395,8 @@ footer {
 
 <!-- ============ STICKY BAR ============ -->
 <div class="sticky-bar" id="sticky">
-  <div class="sticky-info">⚡️ Palier 1 · <strong>10€</strong> · <span id="sticky-remaining">2 153 restants</span> avant +50%</div>
-  <a href="#placements" class="sticky-cta">Prendre mes Placements →</a>
+  <div class="sticky-info" id="sticky-remaining">⚡️ <strong>2 153</strong> placements avant <strong>+50%</strong></div>
+  <a href="#placements" class="sticky-cta">Prendre mes placements →</a>
 </div>
 
 <script>
@@ -2529,10 +2529,10 @@ function updateSold() {
     const remaining = t.cap - sold;
     const nextPct = t.name === 1 ? '+50%' : '+100%';
     tierRemainingEl.textContent = `${remaining.toLocaleString('fr-FR')} restants avant ${nextPct}`;
-    stickyRemainingEl.textContent = `${remaining.toLocaleString('fr-FR')} restants`;
+    stickyRemainingEl.innerHTML = `⚡️ <strong>${remaining.toLocaleString('fr-FR')}</strong> placements avant <strong>${nextPct}</strong>`;
   } else {
     tierRemainingEl.textContent = 'Dernier palier';
-    stickyRemainingEl.textContent = 'Dernier palier';
+    stickyRemainingEl.innerHTML = '🔥 Dernier palier — dernières places';
   }
 
   document.querySelectorAll('.tier').forEach(el => el.classList.remove('active', 'done'));
