@@ -2495,8 +2495,7 @@ tickCountdown();
 setInterval(tickCountdown, 1000);
 
 /* ===== LIVE FEED (stacked notifications) ===== */
-const FIRSTNAMES = ['Marie','Thomas','Léa','Julien','Emma','Nathan','Chloé','Lucas','Camille','Adrien','Sarah','Alex','Manon','Hugo','Louise','Enzo','Zoé','Théo','Inès','Noah','Yasmine','Karim','Lina','Mathis','Amel','Kilian','Nour','Tom'];
-const CITIES = ['de Paris','de Lyon','de Marseille','de Bordeaux','de Lille','de Toulouse','de Nice','de Nantes','de Strasbourg','de Rennes','de Montpellier','de Rouen','de Reims'];
+const HANDLES = ['@lea.ugc','@theo_creates','@marie.pxls','@juju.edits','@emmalvsn','@nath.paris','@chloevrt','@lucasfr','@camille.co','@adrienxx','@sarah.rls','@alexbtr','@manon.vibe','@hugo.ftg','@louise.mp4','@enzo.reel','@zoe.stories','@lil.theo','@ines.creat','@noahvibes','@yasmine.k','@karim.mkt','@lina.raw','@mathis.co','@amel.grid','@kilian.fr','@nourish.ig','@tom.cuts','@paulinemp4','@rayanugc','@jadelvs','@aymen.co'];
 const liveStack = document.getElementById('live-stack');
 let sold = 2847;
 const soldEl = document.getElementById('sold-count');
@@ -2544,13 +2543,12 @@ function updateSold() {
 }
 
 function pushLiveMsg() {
-  const n = FIRSTNAMES[Math.floor(Math.random()*FIRSTNAMES.length)];
-  const c = CITIES[Math.floor(Math.random()*CITIES.length)];
+  const h = HANDLES[Math.floor(Math.random()*HANDLES.length)];
   const q = [3,5,10,15,20,25,40,50][Math.floor(Math.random()*8)];
-  const initials = n.substring(0,1).toUpperCase();
+  const initials = h.replace('@','').substring(0,1).toUpperCase();
   const el = document.createElement('div');
   el.className = 'live-msg-item';
-  el.innerHTML = `<div class="live-avatar">${initials}</div><div class="live-txt"><strong>${n}</strong> ${c} vient de prendre <strong>${q}</strong> placements</div>`;
+  el.innerHTML = `<div class="live-avatar">${initials}</div><div class="live-txt"><strong>${h}</strong> vient de prendre <strong>${q}</strong> placements</div>`;
   liveStack.appendChild(el);
   gsap.fromTo(el, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: .5, ease: 'power2.out' });
   const items = liveStack.querySelectorAll('.live-msg-item');
