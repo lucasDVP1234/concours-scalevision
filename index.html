@@ -2450,25 +2450,8 @@ heroTl
   .to('.hero-countdown', { opacity: 1, y: 0, duration: .6, ease: 'power3.out' }, .8)
   .to('.scroll-hint', { opacity: 1, duration: .5 }, .95);
 
-/* Hero mega floating */
-gsap.to('.hero-mega em', {
-  y: -15,
-  duration: 3,
-  ease: 'sine.inOut',
-  yoyo: true,
-  repeat: -1
-});
-
-/* Parallax hero mega on scroll */
-gsap.to('.hero-mega', {
-  scrollTrigger: {
-    trigger: '.hero',
-    start: 'top top',
-    end: 'bottom top',
-    scrub: 1
-  },
-  y: -60
-});
+/* Hero mega : pas d'animation continue ni de parallax scroll pour garder
+   le 50 000€ stable après l'entry animation. */
 
 /* Bg mesh parallax */
 gsap.to('.bg-mesh', {
