@@ -329,23 +329,37 @@ nav .cta-mini:hover { transform: translateY(-2px) scale(1.05); }
 /* ---------- HERO CRED STRIP ---------- */
 .hero-cred {
   margin-top: 44px;
-  max-width: 720px;
-  padding: 14px 22px 12px;
-  border-radius: 100px;
-  background: rgba(255,255,255,.6);
+  max-width: 760px;
+  padding: 12px 18px 12px 12px;
+  border-radius: 28px;
+  background: rgba(255,255,255,.7);
   border: 1px solid rgba(8,7,15,.08);
   backdrop-filter: blur(20px);
   box-shadow: 0 10px 40px -20px rgba(8,7,15,.15);
   position: relative; z-index: 3;
-  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  display: flex; align-items: center; gap: 14px;
+  text-align: left;
+}
+.hero-cred-avatar {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 2px solid rgba(255,255,255,.9);
+  box-shadow: 0 4px 14px rgba(37,30,175,.25), 0 2px 6px rgba(255,46,147,.2);
+}
+.hero-cred-body {
+  display: flex; flex-direction: column; gap: 6px;
+  min-width: 0;
+  flex: 1;
 }
 .hero-cred-line {
-  display: flex; align-items: center; justify-content: center; gap: 12px;
+  display: flex; align-items: baseline; gap: 10px;
   flex-wrap: wrap;
-  font-size: 12px;
   color: rgba(8,7,15,.75);
   font-family: 'JetBrains Mono', monospace;
   letter-spacing: .3px;
+  line-height: 1;
 }
 .hero-cred-tag {
   display: inline-flex; align-items: center; gap: 6px;
@@ -372,33 +386,27 @@ nav .cta-mini:hover { transform: translateY(-2px) scale(1.05); }
 }
 .hero-cred-meta {
   font-size: 11px;
-  color: rgba(8,7,15,.6);
+  color: rgba(8,7,15,.55);
   letter-spacing: .3px;
 }
-.hero-cred-meta sup { font-size: .7em; vertical-align: super; }
-.hero-cred-sep {
-  width: 1px; height: 16px;
-  background: rgba(8,7,15,.15);
-}
-.hero-cred-partners-lbl {
-  font-size: 11px;
-  color: rgba(8,7,15,.7);
-  letter-spacing: .3px;
-}
-.hero-cred-partners-lbl strong { color: var(--ink); font-weight: 700; }
 .hero-cred-chips {
-  display: flex; flex-wrap: wrap; justify-content: center;
-  gap: 5px 6px;
-  padding-top: 4px;
-  border-top: 1px dashed rgba(8,7,15,.1);
-  width: 100%;
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: 4px 6px;
+}
+.hero-cred-chips-lbl {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(8,7,15,.5);
+  margin-right: 2px;
 }
 .hero-cred-chip {
-  padding: 3px 10px;
+  padding: 3px 9px;
   font-family: 'JetBrains Mono', monospace;
   font-size: 10px;
   letter-spacing: .5px;
-  color: rgba(8,7,15,.7);
+  color: rgba(8,7,15,.75);
   background: rgba(8,7,15,.04);
   border: 1px solid rgba(8,7,15,.08);
   border-radius: 100px;
@@ -1816,11 +1824,22 @@ footer {
   .cd-item { min-width: 62px; padding: 10px 6px; }
   .cd-num { font-size: 30px; }
   .cd-lbl { font-size: 8px; }
-  .hero-cred { margin-top: 32px; padding: 12px 16px 10px; border-radius: 24px; }
-  .hero-cred-line { gap: 8px; font-size: 11px; }
-  .hero-cred-brand { font-size: 18px; }
-  .hero-cred-sep { display: none; }
-  .hero-cred-chip { font-size: 9px; padding: 2px 8px; }
+  .hero-cred {
+    margin-top: 28px;
+    padding: 10px 14px 10px 10px;
+    border-radius: 22px;
+    gap: 10px;
+    max-width: 100%;
+  }
+  .hero-cred-avatar { width: 40px; height: 40px; }
+  .hero-cred-body { gap: 5px; }
+  .hero-cred-line { gap: 6px; align-items: center; }
+  .hero-cred-tag { font-size: 9px; letter-spacing: 1.5px; }
+  .hero-cred-brand { font-size: 16px; }
+  .hero-cred-meta { font-size: 10px; width: 100%; margin-top: 2px; }
+  .hero-cred-chips { gap: 3px 4px; }
+  .hero-cred-chips-lbl { font-size: 8px; letter-spacing: 1px; }
+  .hero-cred-chip { font-size: 9px; padding: 2px 7px; letter-spacing: .3px; }
   .footer-top { grid-template-columns: 1fr; }
   .brands-grid { grid-template-columns: repeat(2, 1fr); }
   .brand-cell { font-size: 16px; padding: 14px; aspect-ratio: 1.4/1; }
@@ -1943,22 +1962,24 @@ footer {
   </div>
 
   <div class="hero-cred">
-    <div class="hero-cred-line">
-      <span class="hero-cred-tag"><span class="dot"></span>Organisé par</span>
-      <span class="hero-cred-brand"><em>Scalevision</em></span>
-      <span class="hero-cred-meta">Agence UGC N°1 · Paris 10<sup>e</sup></span>
-      <span class="hero-cred-sep"></span>
-      <span class="hero-cred-partners-lbl"><strong>+ 8 marques partenaires</strong></span>
-    </div>
-    <div class="hero-cred-chips">
-      <span class="hero-cred-chip">Chamas</span>
-      <span class="hero-cred-chip">Khune</span>
-      <span class="hero-cred-chip">Ornikar</span>
-      <span class="hero-cred-chip">MyMoodz</span>
-      <span class="hero-cred-chip">Japhy</span>
-      <span class="hero-cred-chip">Freegun</span>
-      <span class="hero-cred-chip">Born4You</span>
-      <span class="hero-cred-chip">TealerLab</span>
+    <img src="https://scalevision.s3.eu-north-1.amazonaws.com/video_site/ugcademie.png" alt="Scalevision" class="hero-cred-avatar" />
+    <div class="hero-cred-body">
+      <div class="hero-cred-line">
+        <span class="hero-cred-tag"><span class="dot"></span>Organisé par</span>
+        <span class="hero-cred-brand"><em>Scalevision</em></span>
+        <span class="hero-cred-meta">Agence UGC · Paris</span>
+      </div>
+      <div class="hero-cred-chips">
+        <span class="hero-cred-chips-lbl">+ 8 marques :</span>
+        <span class="hero-cred-chip">Chamas</span>
+        <span class="hero-cred-chip">Khune</span>
+        <span class="hero-cred-chip">Ornikar</span>
+        <span class="hero-cred-chip">MyMoodz</span>
+        <span class="hero-cred-chip">Japhy</span>
+        <span class="hero-cred-chip">Freegun</span>
+        <span class="hero-cred-chip">Born4You</span>
+        <span class="hero-cred-chip">TealerLab</span>
+      </div>
     </div>
   </div>
 
