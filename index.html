@@ -326,8 +326,88 @@ nav .cta-mini:hover { transform: translateY(-2px) scale(1.05); }
 }
 .btn-ghost:hover { background: rgba(8,7,15,.08); }
 
+/* ---------- HERO CRED STRIP ---------- */
+.hero-cred {
+  margin-top: 44px;
+  max-width: 720px;
+  padding: 14px 22px 12px;
+  border-radius: 100px;
+  background: rgba(255,255,255,.6);
+  border: 1px solid rgba(8,7,15,.08);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 10px 40px -20px rgba(8,7,15,.15);
+  position: relative; z-index: 3;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+}
+.hero-cred-line {
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: rgba(8,7,15,.75);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: .3px;
+}
+.hero-cred-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(8,7,15,.55);
+}
+.hero-cred-tag .dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--pink);
+  box-shadow: 0 0 8px var(--pink);
+  animation: pulse 1.8s infinite;
+}
+.hero-cred-brand {
+  font-family: 'Instrument Serif', serif;
+  font-size: 22px;
+  line-height: 1;
+  letter-spacing: -.01em;
+}
+.hero-cred-brand em {
+  font-style: italic;
+  background: var(--grad);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent;
+}
+.hero-cred-meta {
+  font-size: 11px;
+  color: rgba(8,7,15,.6);
+  letter-spacing: .3px;
+}
+.hero-cred-meta sup { font-size: .7em; vertical-align: super; }
+.hero-cred-sep {
+  width: 1px; height: 16px;
+  background: rgba(8,7,15,.15);
+}
+.hero-cred-partners-lbl {
+  font-size: 11px;
+  color: rgba(8,7,15,.7);
+  letter-spacing: .3px;
+}
+.hero-cred-partners-lbl strong { color: var(--ink); font-weight: 700; }
+.hero-cred-chips {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 5px 6px;
+  padding-top: 4px;
+  border-top: 1px dashed rgba(8,7,15,.1);
+  width: 100%;
+}
+.hero-cred-chip {
+  padding: 3px 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .5px;
+  color: rgba(8,7,15,.7);
+  background: rgba(8,7,15,.04);
+  border: 1px solid rgba(8,7,15,.08);
+  border-radius: 100px;
+  transition: all .3s;
+}
+.hero-cred-chip:hover { color: var(--pink); border-color: var(--pink); background: rgba(255,46,147,.06); }
+
 .hero-countdown {
-  margin-top: 60px;
+  margin-top: 44px;
   display: flex; gap: 6px; justify-content: center; flex-wrap: wrap;
   position: relative; z-index: 3;
 }
@@ -1732,10 +1812,15 @@ footer {
   .hero-cta-row { flex-direction: column; width: 100%; gap: 12px; }
   .hero-cta-row .btn-huge,
   .hero-cta-row .btn-ghost { width: 100%; justify-content: center; padding: 20px 20px; font-size: 15px; }
-  .hero-countdown { margin-top: 40px; gap: 4px; }
+  .hero-countdown { margin-top: 32px; gap: 4px; }
   .cd-item { min-width: 62px; padding: 10px 6px; }
   .cd-num { font-size: 30px; }
   .cd-lbl { font-size: 8px; }
+  .hero-cred { margin-top: 32px; padding: 12px 16px 10px; border-radius: 24px; }
+  .hero-cred-line { gap: 8px; font-size: 11px; }
+  .hero-cred-brand { font-size: 18px; }
+  .hero-cred-sep { display: none; }
+  .hero-cred-chip { font-size: 9px; padding: 2px 8px; }
   .footer-top { grid-template-columns: 1fr; }
   .brands-grid { grid-template-columns: repeat(2, 1fr); }
   .brand-cell { font-size: 16px; padding: 14px; aspect-ratio: 1.4/1; }
@@ -1855,6 +1940,26 @@ footer {
   <div class="hero-cta-row">
     <a href="#placements" class="btn-huge">Prendre mes Placements <span class="price-tag">dès 10€</span> →</a>
     <a href="#deal" class="btn-ghost">C'est quoi le deal ?</a>
+  </div>
+
+  <div class="hero-cred">
+    <div class="hero-cred-line">
+      <span class="hero-cred-tag"><span class="dot"></span>Organisé par</span>
+      <span class="hero-cred-brand"><em>Scalevision</em></span>
+      <span class="hero-cred-meta">Agence UGC N°1 · Paris 10<sup>e</sup></span>
+      <span class="hero-cred-sep"></span>
+      <span class="hero-cred-partners-lbl"><strong>+ 8 marques partenaires</strong></span>
+    </div>
+    <div class="hero-cred-chips">
+      <span class="hero-cred-chip">Chamas</span>
+      <span class="hero-cred-chip">Khune</span>
+      <span class="hero-cred-chip">Ornikar</span>
+      <span class="hero-cred-chip">MyMoodz</span>
+      <span class="hero-cred-chip">Japhy</span>
+      <span class="hero-cred-chip">Freegun</span>
+      <span class="hero-cred-chip">Born4You</span>
+      <span class="hero-cred-chip">TealerLab</span>
+    </div>
   </div>
 
   <div class="hero-countdown">
@@ -2435,6 +2540,7 @@ gsap.set('.hero-mega', { opacity: 0, y: 80, scale: .8 });
 gsap.set('.hero-punch', { opacity: 0, y: 30 });
 gsap.set('.hero-sub', { opacity: 0, y: 30 });
 gsap.set('.hero-cta-row', { opacity: 0, y: 30 });
+gsap.set('.hero-cred', { opacity: 0, y: 20 });
 gsap.set('.hero-countdown', { opacity: 0, y: 30 });
 gsap.set('.scroll-hint', { opacity: 0 });
 
@@ -2446,8 +2552,9 @@ heroTl
   .to('.hero-punch', { opacity: 1, y: 0, duration: .6, ease: 'power3.out' }, .35)
   .to('.hero-sub', { opacity: 1, y: 0, duration: .6, ease: 'power3.out' }, .5)
   .to('.hero-cta-row', { opacity: 1, y: 0, duration: .6, ease: 'power3.out' }, .65)
-  .to('.hero-countdown', { opacity: 1, y: 0, duration: .6, ease: 'power3.out' }, .8)
-  .to('.scroll-hint', { opacity: 1, duration: .5 }, .95);
+  .to('.hero-cred', { opacity: 1, y: 0, duration: .6, ease: 'power3.out' }, .8)
+  .to('.hero-countdown', { opacity: 1, y: 0, duration: .6, ease: 'power3.out' }, .95)
+  .to('.scroll-hint', { opacity: 1, duration: .5 }, 1.1);
 
 /* Hero mega : pas d'animation continue ni de parallax scroll pour garder
    le 50 000€ stable après l'entry animation. */
