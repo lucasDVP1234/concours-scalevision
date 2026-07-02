@@ -214,12 +214,23 @@ nav .cta-mini:hover { transform: translateY(-2px) scale(1.05); }
   color: transparent;
 }
 .hero-punch-top {
+  display: inline-flex; align-items: center; gap: 14px;
   font-family: 'JetBrains Mono', monospace;
   font-size: clamp(12px, 1.2vw, 14px);
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: rgba(8,7,15,.55);
+  color: var(--ink);
+  font-weight: 700;
   margin-bottom: 18px;
+}
+.hero-punch-top::before,
+.hero-punch-top::after {
+  content: '';
+  width: 30px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--pink));
+}
+.hero-punch-top::after {
+  background: linear-gradient(90deg, var(--pink), transparent);
 }
 
 .hero-mega {
@@ -1856,7 +1867,11 @@ footer {
 @media (max-width: 600px) {
   section { padding: 70px 16px; }
   .hero { padding: 90px 16px 30px; }
-  .hero-mega { font-size: clamp(52px, 13vw, 90px); }
+  .hero-kicker { font-size: clamp(30px, 7.5vw, 44px); margin-bottom: 22px; line-height: 1.1; font-weight: 500; }
+  .hero-punch-top { font-size: 13px; letter-spacing: 3px; gap: 10px; margin-bottom: 14px; }
+  .hero-punch-top::before, .hero-punch-top::after { width: 20px; }
+  .hero-mega { font-size: clamp(68px, 21vw, 140px); line-height: .82; margin-bottom: 14px; }
+  .hero-punch { font-size: clamp(24px, 6vw, 40px); }
   .hero-sub { font-size: 14px; margin-bottom: 30px; }
   .hero-cta-row { flex-direction: column; width: 100%; gap: 12px; }
   .hero-cta-row .btn-huge,
