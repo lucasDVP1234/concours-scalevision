@@ -406,6 +406,55 @@ nav .cta-mini:hover { transform: translateY(-2px) scale(1.05); }
 }
 .hero-cred-chip:hover { color: var(--pink); border-color: var(--pink); background: rgba(255,46,147,.06); }
 
+/* ---------- HERO PROOF SHOT ---------- */
+.hero-proof {
+  margin: 28px auto 0;
+  max-width: 720px;
+  width: 100%;
+  position: relative; z-index: 3;
+  display: flex; flex-direction: column; align-items: center;
+}
+.hero-proof-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 22px;
+  border: 1px solid rgba(8,7,15,.08);
+  box-shadow:
+    0 30px 80px -30px rgba(37,30,175,.35),
+    0 15px 40px -20px rgba(255,46,147,.2),
+    0 4px 12px rgba(8,7,15,.08);
+  transform: rotate(-1deg);
+  transition: transform .5s cubic-bezier(.2,.9,.3,1);
+}
+.hero-proof:hover .hero-proof-img { transform: rotate(0deg) translateY(-3px); }
+.hero-proof-cap {
+  margin-top: 14px;
+  display: inline-flex; align-items: center; gap: 12px;
+  padding: 6px 14px;
+  border-radius: 100px;
+  background: rgba(255,255,255,.7);
+  border: 1px solid rgba(8,7,15,.08);
+  backdrop-filter: blur(20px);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .4px;
+  color: rgba(8,7,15,.7);
+  transform: rotate(-1deg);
+}
+.hero-proof-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--pink);
+  font-weight: 700;
+}
+.hero-proof-tag .dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--pink);
+  box-shadow: 0 0 8px var(--pink);
+  animation: pulse 1.8s infinite;
+}
+
 .hero-countdown {
   margin-top: 44px;
   display: flex; gap: 6px; justify-content: center; flex-wrap: wrap;
@@ -1821,6 +1870,10 @@ footer {
   .hero-cred-brand { font-size: 18px; }
   .hero-cred-sep { display: none; }
   .hero-cred-chip { font-size: 9px; padding: 2px 8px; }
+  .hero-proof { margin-top: 20px; }
+  .hero-proof-img { border-radius: 16px; transform: rotate(-.8deg); }
+  .hero-proof-cap { font-size: 10px; gap: 8px; padding: 5px 12px; }
+  .hero-proof-tag { font-size: 8px; letter-spacing: 1.5px; }
   .footer-top { grid-template-columns: 1fr; }
   .brands-grid { grid-template-columns: repeat(2, 1fr); }
   .brand-cell { font-size: 16px; padding: 14px; aspect-ratio: 1.4/1; }
@@ -1961,6 +2014,14 @@ footer {
       <span class="hero-cred-chip">TealerLab</span>
     </div>
   </div>
+
+  <figure class="hero-proof">
+    <img src="https://scalevision.s3.eu-north-1.amazonaws.com/video_site/cheque.png" alt="L'équipe Scalevision avec le chèque de 50 000€ du pool #01" class="hero-proof-img" />
+    <figcaption class="hero-proof-cap">
+      <span class="hero-proof-tag"><span class="dot"></span>Pool #01 sécurisé</span>
+      <span class="hero-proof-txt">L'équipe Scalevision · Édition #01</span>
+    </figcaption>
+  </figure>
 
   <div class="hero-countdown">
     <div class="cd-label">Clôture le 31 août 2026 · 20h</div>
@@ -2541,6 +2602,7 @@ gsap.set('.hero-punch', { opacity: 0, y: 30 });
 gsap.set('.hero-sub', { opacity: 0, y: 30 });
 gsap.set('.hero-cta-row', { opacity: 0, y: 30 });
 gsap.set('.hero-cred', { opacity: 0, y: 20 });
+gsap.set('.hero-proof', { opacity: 0, y: 40, scale: .96 });
 gsap.set('.hero-countdown', { opacity: 0, y: 30 });
 gsap.set('.scroll-hint', { opacity: 0 });
 
@@ -2553,8 +2615,9 @@ heroTl
   .to('.hero-sub', { opacity: 1, y: 0, duration: .6, ease: 'power3.out' }, .5)
   .to('.hero-cta-row', { opacity: 1, y: 0, duration: .6, ease: 'power3.out' }, .65)
   .to('.hero-cred', { opacity: 1, y: 0, duration: .6, ease: 'power3.out' }, .8)
-  .to('.hero-countdown', { opacity: 1, y: 0, duration: .6, ease: 'power3.out' }, .95)
-  .to('.scroll-hint', { opacity: 1, duration: .5 }, 1.1);
+  .to('.hero-proof', { opacity: 1, y: 0, scale: 1, duration: .8, ease: 'power3.out' }, .95)
+  .to('.hero-countdown', { opacity: 1, y: 0, duration: .6, ease: 'power3.out' }, 1.15)
+  .to('.scroll-hint', { opacity: 1, duration: .5 }, 1.3);
 
 /* Hero mega : pas d'animation continue ni de parallax scroll pour garder
    le 50 000€ stable après l'entry animation. */
